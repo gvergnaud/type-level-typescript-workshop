@@ -1,0 +1,17 @@
+*~
+*.DS_Store
+/.vscode/*
+!/.vscode/pnpify
+!/.vscode/extensions.json
+!/.vscode/settings.json
+*.log
+*.swp
+*.swo
+*.swn
+*.log
+.nfs*
+.envrc
+.idea
+.tm_properties
+.bundle
+/node_modules

@@ -1,0 +1,15 @@
+{
+  "name": "type-level-typescript-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "gvergnaud",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^4.5.5"
+  }
+}
