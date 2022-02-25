@@ -7,7 +7,7 @@ import { Equal, Expect, TODO } from "../helpers";
  * Simple branching with conditional tiles
  */
 
-type If<Condition, Branch1, Branch2> = TODO;
+type If<condition, branch1, branch2> = TODO;
 
 namespace exercise_1 {
   type res1 = If<true, string, number>;
