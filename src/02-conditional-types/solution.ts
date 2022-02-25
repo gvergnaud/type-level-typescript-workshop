@@ -1,5 +1,6 @@
-import { Equal, Expect, TODO } from "../helpers";
-
+import { Equal, Expect } from "../helpers";
+type Head<list> = list extends [infer head] ? head : never;
+type t = Head<[1, 2, 3]>;
 /**
  * ONE
  */
@@ -7,8 +8,9 @@ import { Equal, Expect, TODO } from "../helpers";
  * Simple branching with conditional tiles
  */
 
-type If<Condition, Branch1, Branch2> = TODO;
-
+type If<condition, branch1, branch2> = condition extends true
+  ? branch1
+  : branch2;
 namespace exercise_1 {
   type res1 = If<true, string, number>;
   type test1 = Expect<Equal<res1, string>>;
@@ -17,6 +19,7 @@ namespace exercise_1 {
   type test2 = Expect<Equal<res2, number>>;
 
   // getting closer to quantum programming with types ? :)
+  //
   type res3 = If<boolean, string, number>;
   type test3 = Expect<Equal<res3, string | number>>;
 }
@@ -30,8 +33,7 @@ namespace exercise_1 {
  *
  * extract a property of an object type
  */
-type GetName<T> = TODO;
-
+type GetName<input> = input extends { name: infer name } ? name : never;
 namespace exercise_2 {
   type res1 = GetName<{ name: "Gabriel" }>;
   type test1 = Expect<Equal<res1, "Gabriel">>;
@@ -58,8 +60,9 @@ namespace exercise_2 {
  *
  * extract a parameter from a Generic type
  */
-type UnwrapPromise<input> = TODO;
-
+type UnwrapPromise<input> = input extends Promise<infer awaited>
+  ? awaited
+  : input;
 namespace exercise_3 {
   type res1 = UnwrapPromise<Promise<"Hello">>;
   type test1 = Expect<Equal<res1, "Hello">>;
