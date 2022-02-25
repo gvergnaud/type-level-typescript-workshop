@@ -1,6 +1,5 @@
 import { Equal, Expect } from "../helpers";
-type Head<list> = list extends [infer head] ? head : never;
-type t = Head<[1, 2, 3]>;
+
 /**
  * ONE
  */
