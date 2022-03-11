@@ -1,4 +1,4 @@
-import { TODO } from "../helpers";
+import { Equal, Expect, TODO } from "../helpers";
 
 /**
  * We would like our increment function to accept all kind of parameters
@@ -9,7 +9,11 @@ const increment = <T extends TODO>(value: T): T => {
   return value;
 };
 
-const x = increment({ count: 1, type: "voiture" as const });
-const y = increment({ count: 2, type: "velo" as const });
+const res1 = increment({ type: "car" as const, count: 1 });
+type test1 = Expect<Equal<typeof res1, { type: "car"; count: number }>>;
+
+const res2 = increment({ type: "velo" as const, count: 2 });
+type test2 = Expect<Equal<typeof res2, { type: "velo"; count: number }>>;
+
 // @ts-expect-error no count property on parameter
-const z = increment({ type: "moto" as const });
+const res3 = increment({ type: "moto" as const });
