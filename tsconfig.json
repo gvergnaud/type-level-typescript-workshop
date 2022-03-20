@@ -3,7 +3,6 @@
         "strict": true,
         "module": "commonjs",
         "lib": ["es6"],
-        "rootDir": "src",
         "moduleResolution": "node",
         "noEmit": true
     }
