@@ -1,4 +1,6 @@
 /**
+ * Assignability.
+ *
  * introduce:
  * - the concept of assignability
  * - the concept and syntax of type constraints, in generic types, and generic functions
