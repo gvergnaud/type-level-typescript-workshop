@@ -1,6 +1,6 @@
 import { Equal, Expect, TODO } from "../helpers";
 
-namespace exercise_1 {
+namespace one {
   type FirstLetter<word> = TODO;
 
   type res1 = FirstLetter<"TYPE">;
@@ -10,7 +10,7 @@ namespace exercise_1 {
   type test2 = Expect<Equal<res2, "H">>;
 }
 
-namespace exercise_2 {
+namespace two {
   type EndOfWord<word> = TODO;
 
   type res1 = EndOfWord<"TYPE">;
@@ -20,7 +20,7 @@ namespace exercise_2 {
   type test2 = Expect<Equal<res2, "ello Devoxx">>;
 }
 
-namespace exercise_2_5 {
+namespace two_5 {
   type Size = "xl" | "l" | "m" | "s" | "xs";
   type Color = "primary" | "secondary" | "tertiary";
 
@@ -40,7 +40,7 @@ namespace exercise_2_5 {
   Button({ className: "primary-xxs" });
 }
 
-namespace exercise_3 {
+namespace three {
   type SnakeToCamelCase<word> = TODO;
 
   type res1 = SnakeToCamelCase<"hello">;
@@ -53,7 +53,7 @@ namespace exercise_3 {
   type test3 = Expect<Equal<res3, "helloTypeScript">>;
 }
 
-namespace exercise_4 {
+namespace four {
   type CamelizeKeys<obj> = TODO;
 
   type res1 = CamelizeKeys<{ age: number; first_name: string }>;

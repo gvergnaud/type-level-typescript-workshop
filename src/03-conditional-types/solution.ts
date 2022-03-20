@@ -1,16 +1,15 @@
-import { Equal, Expect } from "../helpers";
+import { Equal, Expect, TODO } from "../helpers";
 
 /**
- * ONE
+ * 1. Implement a generic returning:
+ *     - the second parameter if the first one is true
+ *     - the third parameter if the first one is false
  */
-/**
- * Simple branching with conditional tiles
- */
+namespace one {
+  type If<condition, branch1, branch2> = condition extends true
+    ? branch1
+    : branch2;
 
-type If<condition, branch1, branch2> = condition extends true
-  ? branch1
-  : branch2;
-namespace exercise_1 {
   type res1 = If<true, string, number>;
   type test1 = Expect<Equal<res1, string>>;
 
@@ -18,22 +17,17 @@ namespace exercise_1 {
   type test2 = Expect<Equal<res2, number>>;
 
   // getting closer to quantum programming with types ? :)
-  //
   type res3 = If<boolean, string, number>;
   type test3 = Expect<Equal<res3, string | number>>;
 }
 
 /**
- * TWO
+ * 2. implement a generic to extract the type of the `name`
+ *    property of an object type.
  */
+namespace two {
+  type GetName<input> = input extends { name: infer name } ? name : never;
 
-/**
- * ## Using conditional type and infer
- *
- * extract a property of an object type
- */
-type GetName<input> = input extends { name: infer name } ? name : never;
-namespace exercise_2 {
   type res1 = GetName<{ name: "Gabriel" }>;
   type test1 = Expect<Equal<res1, "Gabriel">>;
 
@@ -51,18 +45,14 @@ namespace exercise_2 {
 }
 
 /**
- * THREE
+ * 2. implement a generic to extract the type parameter
+ *    of another generic type
  */
+namespace three {
+  type UnwrapPromise<input> = input extends Promise<infer awaited>
+    ? awaited
+    : input;
 
-/**
- * ## Using conditional type and infer
- *
- * extract a parameter from a Generic type
- */
-type UnwrapPromise<input> = input extends Promise<infer awaited>
-  ? awaited
-  : input;
-namespace exercise_3 {
   type res1 = UnwrapPromise<Promise<"Hello">>;
   type test1 = Expect<Equal<res1, "Hello">>;
 

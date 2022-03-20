@@ -1,15 +1,13 @@
 import { Equal, Expect, TODO } from "../helpers";
 
 /**
- * ONE
+ * 1. Implement a generic returning:
+ *     - the second parameter if the first one is true
+ *     - the third parameter if the first one is false
  */
-/**
- * Simple branching with conditional tiles
- */
+namespace one {
+  type If<condition extends boolean, branch1, branch2> = TODO;
 
-type If<condition, branch1, branch2> = TODO;
-
-namespace exercise_1 {
   type res1 = If<true, string, number>;
   type test1 = Expect<Equal<res1, string>>;
 
@@ -22,17 +20,12 @@ namespace exercise_1 {
 }
 
 /**
- * TWO
+ * 2. implement a generic to extract the type of the `name`
+ *    property of an object type.
  */
+namespace two {
+  type GetName<T> = TODO;
 
-/**
- * ## Using conditional type and infer
- *
- * extract a property of an object type
- */
-type GetName<T> = TODO;
-
-namespace exercise_2 {
   type res1 = GetName<{ name: "Gabriel" }>;
   type test1 = Expect<Equal<res1, "Gabriel">>;
 
@@ -50,17 +43,12 @@ namespace exercise_2 {
 }
 
 /**
- * THREE
+ * 2. implement a generic to extract the type parameter
+ *    of another generic type
  */
+namespace three {
+  type UnwrapPromise<input> = TODO;
 
-/**
- * ## Using conditional type and infer
- *
- * extract a parameter from a Generic type
- */
-type UnwrapPromise<input> = TODO;
-
-namespace exercise_3 {
   type res1 = UnwrapPromise<Promise<"Hello">>;
   type test1 = Expect<Equal<res1, "Hello">>;
 

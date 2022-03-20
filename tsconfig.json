@@ -2,22 +2,9 @@
     "compilerOptions": {
         "strict": true,
         "module": "commonjs",
-        "esModuleInterop": true,
-        "sourceMap": true,
-        "lib": [
-            "es6",
-            "dom"
-        ],
+        "lib": ["es6"],
         "rootDir": "src",
         "moduleResolution": "node",
-        "noImplicitAny": true,
-        "strictNullChecks": true,
-        "strictFunctionTypes": true,
-        "noImplicitThis": true,
-        "alwaysStrict": true,
-        "noImplicitReturns": true,
-        "noFallthroughCasesInSwitch": true,
-        "useUnknownInCatchVariables": false,
         "noEmit": true
     }
 }

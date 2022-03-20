@@ -1,19 +1,15 @@
 import { Equal, Expect, Tuple, TODO } from "../helpers";
 
 /**
- * ONE
- */
-
-/**
- * ## Recusive UnwrapPromise
+ * 1. Implement a `UnwrapPromise` generic type which unwraps all layers
+ * of promises and return the value contained inside.
  *
- * Copy the UnwrapPromise implementation from the condition type exercise and
- * improve it to handle recursive Promise<Promise<T>>
+ * For example, `UnwrapPromise<Promise<Promise<number>>>` should
+ * return `number`.
  */
-type UnwrapPromise<input> = input extends Promise<infer awaited>
-  ? UnwrapPromise<awaited>
-  : input;
-namespace exercise_1 {
+namespace one {
+  type UnwrapPromise<input> = TODO;
+
   type res1 = UnwrapPromise<"NOT A PROMISE">;
   type test1 = Expect<Equal<res1, "NOT A PROMISE">>;
 
@@ -28,16 +24,15 @@ namespace exercise_1 {
 }
 
 /**
- * Write a All<Promises> type which turns an array of Promises of value
- * into a Promise of arrays of values.
+ * 2. Write a `All<Promises>` generic type which turns an array
+ * of Promises into a Promise containing an array of values.
  *
- * All<[Promise<number>, Promise<string>, Promise<boolean>]> -> [number, string, boolean]
+ * For example, `All<[Promise<number>, Promise<string>, Promise<boolean>]>`
+ * should return `[number, string, boolean]`.
  */
-type All<promises> = promises extends [infer head, ...infer tail]
-  ? [UnwrapPromise<head>, ...All<tail>]
-  : [];
+namespace two {
+  type All<promises> = TODO;
 
-namespace exercise_2 {
   type res1 = All<[Promise<number>]>;
   type test1 = Expect<Equal<res1, [number]>>;
 
