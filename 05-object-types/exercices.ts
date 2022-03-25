@@ -1,10 +1,27 @@
 import { Equal, Expect, TODO } from "../helpers";
 
+// 1. Implement a generic which makes all keys of an object type optional.
+namespace one {
+  type Partial<obj> = TODO;
+
+  type res1 = Partial<{ a: string }>;
+  type test1 = Expect<Equal<res1, { a?: string }>>;
+
+  type res2 = Partial<{ a: string; b: string }>;
+  type test2 = Expect<Equal<res2, { a: string; b: string }>>;
+
+  type res3 = Partial<{ a: string; b: string; c: string }>;
+  type test3 = Expect<Equal<res3, { a?: string; b?: string; c?: string }>>;
+
+  type res4 = Partial<{}>;
+  type test4 = Expect<Equal<res4, {}>>;
+}
+
 /**
- * 1. Implement a generic picking a union of selected keys
+ * 2. Implement a generic picking a union of selected keys
  *    in an object type.
  */
-namespace one {
+namespace two {
   type Pick<obj, keys> = TODO;
 
   type res1 = Pick<{ a: string; b: string; c: string }, "a">;
@@ -18,10 +35,10 @@ namespace one {
 }
 
 /**
- * 2. Implement a generic excluding a union of selected keys
+ * 3. Implement a generic excluding a union of selected keys
  *    from an object type.
  */
-namespace two {
+namespace three {
   type Omit<obj, keys> = TODO;
 
   type res1 = Omit<{ a: string; b: string; c: string }, "a">;
@@ -35,13 +52,13 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic excluding values of an object type
+ * 4. Implement a generic excluding values of an object type
  *    if they are assignable to a type passed as second parameter.
  *
  * Reminder: You can split your logic into several generic types
  * if that makes the code easier to understand.
  */
-namespace three {
+namespace four {
   type OmitByValue<obj, value> = TODO;
 
   type User = {

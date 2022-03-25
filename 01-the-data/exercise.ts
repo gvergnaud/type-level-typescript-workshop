@@ -1,6 +1,6 @@
 import { Equal, Expect, TODO } from "../helpers";
 
-// 1. implement a generic to get the union of all keys  of an object type.
+// 1. implement a generic to get the union of all keys of an object type.
 namespace one {
   type KeyOf<obj> = TODO;
 

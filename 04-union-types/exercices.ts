@@ -15,3 +15,13 @@ namespace one {
    * - type never: the empty union
    */
 }
+
+namespace two {
+  type ExpectTuple<tuple extends [] | [any, ...any]> = tuple;
+
+  type res1 = ExpectTuple<[1, 2]>;
+  type res2 = ExpectTuple<[2]>;
+  type res3 = ExpectTuple<[]>;
+  // @ts-expect-error
+  type res4 = ExpectTuple<any[]>;
+}

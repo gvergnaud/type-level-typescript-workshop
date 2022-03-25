@@ -15,7 +15,7 @@ export type Expect<T extends true> = T;
 export type Tuple = [any, ...any[]];
 
 const TODO = Symbol("TODO");
-export type TODO = typeof TODO;
+export type TODO = any & typeof TODO;
 
 // { a: string } & { b: string } -> { a: string, b: string }
 export type Compute<obj> = { [k in keyof obj]: obj[k] } & unknown;
