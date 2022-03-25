@@ -12,15 +12,21 @@ Instead, let's use a more classic syntax
 - Type Parameters (parameters equivalent at type-level) should be named fully in camel-case with a leading lower-case letter : `type List<first, restOfTheList> = ...`
 - Inferred types (local variables equivalent at type level), should be named as well in camel-case with a leading lower-case letter : `type GetName<input> = input extends { name: infer name } ? ...`
 
-## Summary
+## Presentation 1
 
 1. The data
    - object types
    - tuple types
    - union types
-   - template literal types
-2. code branching
+2. assignability
+3. code branching
    - conditional types
-   - define variables?
-3. loops
-   - recursive conditional types
+   - extracting values
+
+## Presentation 2: type level algorithms
+
+- mapped types
+- recursive conditional types
+  - tuples
+  - template literal types
+- distributing union types
