@@ -1,5 +1,6 @@
 /**
  * Introduce:
+ * - Introduction: TypeScript Types are a real language!
  * - difference between primitive and literals
  * - object and tuples
  * - arrays and records?
