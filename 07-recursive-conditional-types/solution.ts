@@ -1,13 +1,37 @@
 import { Equal, Expect, Tuple, TODO } from "../helpers";
 
 /**
+ * Implement a Reverse
+ */
+namespace one {
+  type Reverse<tuple extends Array<any>> = tuple extends [
+    infer head,
+    ...infer tail
+  ]
+    ? [...Reverse<tail>, head]
+    : [];
+
+  type res1 = Reverse<[1, 2, 3, 4]>;
+  type test1 = Expect<Equal<res1, [4, 3, 2, 1]>>;
+
+  type res2 = Reverse<[1, 2]>;
+  type test2 = Expect<Equal<res2, [2, 1]>>;
+
+  type res3 = Reverse<[]>;
+  type test3 = Expect<Equal<res3, []>>;
+
+  type res4 = Reverse<[1]>;
+  type test4 = Expect<Equal<res4, [1]>>;
+}
+
+/**
  * 1. Implement a `UnwrapPromise` generic type which unwraps all layers
  * of promises and return the value contained inside.
  *
  * For example, `UnwrapPromise<Promise<Promise<number>>>` should
  * return `number`.
  */
-namespace one {
+namespace two {
   export type UnwrapPromise<input> = input extends Promise<infer awaited>
     ? UnwrapPromise<awaited>
     : input;
@@ -32,9 +56,9 @@ namespace one {
  * For example, `All<[Promise<number>, Promise<string>, Promise<boolean>]>`
  * should return `[number, string, boolean]`.
  */
-namespace two {
+namespace three {
   type All<promises> = promises extends [infer head, ...infer tail]
-    ? [one.UnwrapPromise<head>, ...All<tail>]
+    ? [two.UnwrapPromise<head>, ...All<tail>]
     : [];
 
   type res1 = All<[Promise<number>]>;

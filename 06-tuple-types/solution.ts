@@ -1,7 +1,9 @@
-import { Equal, Expect, TODO } from "../helpers";
+import { Equal, Expect } from "../helpers";
 
 namespace one {
-  type Head<tuple extends Array<any>> = TODO;
+  type Head<tuple extends Array<any>> = tuple extends [infer head, ...infer _]
+    ? head
+    : never;
 
   type res1 = Head<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 1>>;
@@ -14,7 +16,12 @@ namespace one {
 }
 
 namespace two {
-  type Shift<tuple extends Array<any>> = TODO;
+  type Shift<tuple extends Array<any>> = tuple extends [
+    infer head,
+    ...infer rest
+  ]
+    ? rest
+    : [];
 
   type res1 = Shift<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, [2, 3]>>;
@@ -27,7 +34,12 @@ namespace two {
 }
 
 namespace three {
-  type Tail<tuple extends Array<any>> = TODO;
+  type Tail<tuple extends Array<any>> = tuple extends [
+    ...infer rest,
+    infer tail
+  ]
+    ? tail
+    : never;
 
   type res1 = Tail<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 3>>;
@@ -40,7 +52,9 @@ namespace three {
 }
 
 namespace four {
-  type Pop<tuple extends Array<any>> = TODO;
+  type Pop<tuple extends Array<any>> = tuple extends [...infer rest, infer tail]
+    ? rest
+    : [];
 
   type res1 = Pop<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, [1, 2]>>;
@@ -53,7 +67,7 @@ namespace four {
 }
 
 namespace five {
-  type Push<tuple extends Array<any>, element> = TODO;
+  type Push<tuple extends Array<any>, element> = [...tuple, element];
 
   type res1 = Push<[1, 2, 3], 4>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
@@ -63,7 +77,7 @@ namespace five {
 }
 
 namespace six {
-  type Unshift<tuple extends Array<any>, element> = TODO;
+  type Unshift<tuple extends Array<any>, element> = [element, ...tuple];
 
   type res1 = Unshift<[1, 2, 3], 4>;
   type test1 = Expect<Equal<res1, [4, 1, 2, 3]>>;
@@ -73,7 +87,10 @@ namespace six {
 }
 
 namespace seven {
-  type Concat<tuple1 extends Array<any>, tuple2 extends Array<any>> = TODO;
+  type Concat<tuple1 extends Array<any>, tuple2 extends Array<any>> = [
+    ...tuple1,
+    ...tuple2
+  ];
 
   type res1 = Concat<[1, 2, 3], [4]>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
@@ -84,9 +101,8 @@ namespace seven {
 
 namespace eight {
   // Build a Tuple type that can be used in an extends and checks that a tuple contains at least one element
-  // That Tuple type is just to be used as a constraint,
-  // it's fine if uses any in its definition and doesn't take parameters
-  type Tuple = TODO;
+  // That Tuple type is just to be used as a constraint, it's fine if uses any in its definition and doesn't take parameters
+  type Tuple = [any, ...any];
 
   type ATypeThatAcceptsOnlyTuples<tuple extends Tuple> = any;
 
@@ -94,20 +110,4 @@ namespace eight {
   type res2 = ATypeThatAcceptsOnlyTuples<[1, 2]>;
   // @ts-expect-error
   type res3 = ATypeThatAcceptsOnlyTuples<[]>;
-}
-
-namespace nine {
-  type IsTuple<tuple> = TODO;
-
-  type res1 = IsTuple<[1, 2]>;
-  type test1 = Expect<Equal<res1, true>>;
-
-  type res2 = IsTuple<[2]>;
-  type test2 = Expect<Equal<res2, true>>;
-
-  type res3 = IsTuple<[]>;
-  type test3 = Expect<Equal<res3, true>>;
-
-  type res4 = IsTuple<any[]>;
-  type test4 = Expect<Equal<res4, false>>;
 }
