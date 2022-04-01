@@ -1,7 +1,9 @@
 import { Equal, Expect, TODO } from "../helpers";
 
 namespace one {
-  type FirstLetter<word> = TODO;
+  type FirstLetter<word> = word extends `${infer firstLetter}${infer _}`
+    ? firstLetter
+    : "";
 
   type res1 = FirstLetter<"TYPE">;
   type test1 = Expect<Equal<res1, "T">>;
@@ -11,7 +13,9 @@ namespace one {
 }
 
 namespace two {
-  type EndOfWord<word> = TODO;
+  type EndOfWord<word> = word extends `${infer _}${infer endOfWord}`
+    ? endOfWord
+    : "";
 
   type res1 = EndOfWord<"TYPE">;
   type test1 = Expect<Equal<res1, "YPE">>;
@@ -20,8 +24,34 @@ namespace two {
   type test2 = Expect<Equal<res2, "ello Devoxx">>;
 }
 
+namespace two_5 {
+  type Size = "xl" | "l" | "m" | "s" | "xs";
+  type Color = "primary" | "secondary" | "tertiary";
+
+  type ClassNames = `${Color}-${Size}`;
+
+  const Button = ({ className }: { className: ClassNames }) =>
+    `<button class="${className}">my button</button>`;
+
+  Button({ className: "primary-l" });
+  Button({ className: "secondary-s" });
+  Button({ className: "primary-xl" });
+  // The following ones should work as well.
+  // Button({ className: "tertiary-xs" });
+  // Button({ className: "secondary-lg" });
+
+  // The following ones should not work !
+  // @ts-expect-error
+  Button({ className: "oups-s" });
+  // @ts-expect-error
+  Button({ className: "primary-xxs" });
+}
+
 namespace three {
-  type SnakeToCamelCase<word> = TODO;
+  type SnakeToCamelCase<word extends string> =
+    word extends `${infer firstWord}_${infer rest}`
+      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
+      : word;
 
   type res1 = SnakeToCamelCase<"hello">;
   type test1 = Expect<Equal<res1, "hello">>;
@@ -34,7 +64,13 @@ namespace three {
 }
 
 namespace four {
-  type CamelizeKeys<obj> = TODO;
+  type SnakeToCamelCase<word extends string> =
+    word extends `${infer firstWord}_${infer rest}`
+      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
+      : word;
+  type CamelizeKeys<obj> = {
+    [k in keyof obj as SnakeToCamelCase<k & string>]: obj[k];
+  };
 
   type res1 = CamelizeKeys<{ age: number; first_name: string }>;
   type test1 = Expect<Equal<res1, { age: number; firstName: string }>>;

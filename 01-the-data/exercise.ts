@@ -38,7 +38,7 @@ namespace two {
 namespace three {
   // The `extends any[]` part is what we call a "type constraint".
   // We haven't covered constraints yet, but we will in the next chapter.
-  // For now, just assum this is an
+  // For now, just implement the type by replacing the TODO
   type ValueOf<tuple extends any[]> = TODO;
 
   type res1 = ValueOf<[number, string]>;

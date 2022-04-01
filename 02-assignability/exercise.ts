@@ -48,7 +48,8 @@ namespace four {
   type res3 = ExpectFunctionTakingAString<(a: "b") => void>;
 }
 
-namespace one {
+namespace five {
+  // Get rid of the any and fix it
   const increment = (value: any): TODO => {
     value.count++;
     return value;

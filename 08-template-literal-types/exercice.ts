@@ -24,16 +24,20 @@ namespace two_5 {
   type Size = "xl" | "l" | "m" | "s" | "xs";
   type Color = "primary" | "secondary" | "tertiary";
 
-  type ClassNames = `${Color}-${Size}`;
-  // type ClassNames = TODO;
+  // TODO find a smarter way to combine all size & colors combinations rather listing those.
+  type ClassNames = "primary-l" | "secondary-s" | "primary-xl";
 
   const Button = ({ className }: { className: ClassNames }) =>
     `<button class="${className}">my button</button>`;
 
   Button({ className: "primary-l" });
   Button({ className: "secondary-s" });
+  Button({ className: "primary-xl" });
+  // The following ones should work as well.
+  // Button({ className: "tertiary-xs" });
+  // Button({ className: "secondary-lg" });
 
-  Button({ className: "primary-l" });
+  // The following ones should not work !
   // @ts-expect-error
   Button({ className: "oups-s" });
   // @ts-expect-error
@@ -54,6 +58,7 @@ namespace three {
 }
 
 namespace four {
+  // You may want to
   type CamelizeKeys<obj> = TODO;
 
   type res1 = CamelizeKeys<{ age: number; first_name: string }>;

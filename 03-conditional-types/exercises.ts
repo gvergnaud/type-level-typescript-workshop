@@ -24,18 +24,18 @@ namespace one {
  *    property of an object type.
  */
 namespace two {
-  type GetName<T> = TODO;
+  type GetTypeOfName<input> = TODO;
 
-  type res1 = GetName<{ name: "Gabriel" }>;
+  type res1 = GetTypeOfName<{ name: "Gabriel" }>;
   type test1 = Expect<Equal<res1, "Gabriel">>;
 
-  type res2 = GetName<{ name: string; age: number }>;
+  type res2 = GetTypeOfName<{ name: string; age: number }>;
   type test2 = Expect<Equal<res2, string>>;
 
-  type res3 = GetName<{ age: number }>;
+  type res3 = GetTypeOfName<{ age: number }>;
   type test3 = Expect<Equal<res3, never>>;
 
-  type res4 = GetName<{
+  type res4 = GetTypeOfName<{
     name: { firstName: string; lastName: string };
     age: number;
   }>;
