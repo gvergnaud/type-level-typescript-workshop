@@ -19,6 +19,20 @@ namespace one {
   type test4 = Expect<Equal<res4, [1]>>;
 }
 
+// 2. Using a rec. conditional a generic `Every` which given a tuple containing `true` or `false`,
+// returns the type `true` if every item in the tuple are equal to `true`.
+// Bonus: Find an alternate implementation that doesn't require recursion.
+namespace two {
+  type Every<tuple extends any[]> = TODO;
+}
+
+// 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
+// returns the type `true` if at least one item in the tuple is equal to `true`.
+// Bonus: Find an alternate implementation that doesn't require recursion.
+namespace three {
+  type Some<tuple extends any[]> = TODO;
+}
+
 /**
  * 1. Implement a `UnwrapPromise` generic type which unwraps all layers
  * of promises and return the value contained inside.
