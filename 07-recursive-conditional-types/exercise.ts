@@ -4,12 +4,7 @@ import { Equal, Expect, Tuple, TODO } from "../helpers";
  * Implement a Reverse type that takes a tuple and reverses it.
  */
 namespace one {
-  type Reverse<tuple extends Array<any>> = tuple extends [
-    infer head,
-    ...infer tail
-  ]
-    ? [...Reverse<tail>, head]
-    : [];
+  type Reverse<tuple extends any[]> = TODO;
 
   type res1 = Reverse<[1, 2, 3, 4]>;
   type test1 = Expect<Equal<res1, [4, 3, 2, 1]>>;
@@ -32,9 +27,7 @@ namespace one {
  * return `number`.
  */
 namespace two {
-  type UnwrapPromise<input> = input extends Promise<infer awaited>
-    ? UnwrapPromise<awaited>
-    : input;
+  type UnwrapPromise<input> = TODO;
 
   type res1 = UnwrapPromise<"NOT A PROMISE">;
   type test1 = Expect<Equal<res1, "NOT A PROMISE">>;
@@ -57,15 +50,7 @@ namespace two {
  * should return `[number, string, boolean]`.
  */
 namespace three {
-  type UnwrapPromise<input> = input extends Promise<infer awaited>
-    ? awaited
-    : input;
-  type All<promises extends Array<any>> = promises extends [
-    infer head,
-    ...infer tail
-  ]
-    ? [UnwrapPromise<head>, ...All<tail>]
-    : [];
+  type All<promises extends Array<any>> = TODO;
 
   type res1 = All<[Promise<number>]>;
   type test1 = Expect<Equal<res1, [number]>>;

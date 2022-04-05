@@ -1,7 +1,7 @@
 import { Equal, Expect } from "../helpers";
 
 namespace one {
-  type Head<tuple extends Array<any>> = tuple extends [infer head, ...infer _]
+  type Head<tuple extends Array<any>> = tuple extends [infer head, ...any[]]
     ? head
     : never;
 
@@ -16,10 +16,7 @@ namespace one {
 }
 
 namespace two {
-  type Shift<tuple extends Array<any>> = tuple extends [
-    infer head,
-    ...infer rest
-  ]
+  type Shift<tuple extends Array<any>> = tuple extends [any, ...infer rest]
     ? rest
     : [];
 
@@ -34,25 +31,22 @@ namespace two {
 }
 
 namespace three {
-  type Tail<tuple extends Array<any>> = tuple extends [
-    ...infer rest,
-    infer tail
-  ]
+  type Last<tuple extends Array<any>> = tuple extends [...any[], infer tail]
     ? tail
     : never;
 
-  type res1 = Tail<[1, 2, 3]>;
+  type res1 = Last<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 3>>;
 
-  type res2 = Tail<[1]>;
+  type res2 = Last<[1]>;
   type test2 = Expect<Equal<res2, 1>>;
 
-  type res3 = Tail<[]>;
+  type res3 = Last<[]>;
   type test3 = Expect<Equal<res3, never>>;
 }
 
 namespace four {
-  type Pop<tuple extends Array<any>> = tuple extends [...infer rest, infer tail]
+  type Pop<tuple extends Array<any>> = tuple extends [...infer rest, any]
     ? rest
     : [];
 
@@ -99,15 +93,18 @@ namespace seven {
   type test2 = Expect<Equal<res2, [1, 2, 3]>>;
 }
 
-namespace eight {
-  // Build a Tuple type that can be used in an extends and checks that a tuple contains at least one element
-  // That Tuple type is just to be used as a constraint, it's fine if uses any in its definition and doesn't take parameters
-  type Tuple = [any, ...any];
+namespace nine {
+  type IsTuple<tuple> = tuple extends [] | [any, ...any[]] ? true : false;
 
-  type ATypeThatAcceptsOnlyTuples<tuple extends Tuple> = any;
+  type res1 = IsTuple<[1, 2]>;
+  type test1 = Expect<Equal<res1, true>>;
 
-  type res1 = ATypeThatAcceptsOnlyTuples<[1]>;
-  type res2 = ATypeThatAcceptsOnlyTuples<[1, 2]>;
-  // @ts-expect-error
-  type res3 = ATypeThatAcceptsOnlyTuples<[]>;
+  type res2 = IsTuple<[2]>;
+  type test2 = Expect<Equal<res2, true>>;
+
+  type res3 = IsTuple<[]>;
+  type test3 = Expect<Equal<res3, true>>;
+
+  type res4 = IsTuple<any[]>;
+  type test4 = Expect<Equal<res4, false>>;
 }
