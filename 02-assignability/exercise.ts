@@ -90,7 +90,14 @@ namespace unions {
 
 namespace intersections {}
 
-namespace tuples {}
+namespace tuples {
+  type ExpectTupleOfStringAnd42<F extends [string, 42]> = F;
+
+  type res1 = ExpectTupleOfStringAnd42<[string, 42]>;
+  type res2 = ExpectTupleOfStringAnd42<["literal", 42]>;
+  // @ts-expect-error number is not assignable to 42
+  type res3 = ExpectTupleOfStringAnd42<[string, number]>;
+}
 
 namespace functions {
   namespace one {
