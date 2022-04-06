@@ -91,7 +91,7 @@ namespace unions {
 namespace intersections {}
 
 namespace tuples {
-  type ExpectTupleOfStringAnd42<F extends [string, 42]> = F;
+  type ExpectTupleOfStringAnd42<F extends TODO> = F;
 
   type res1 = ExpectTupleOfStringAnd42<[string, 42]>;
   type res2 = ExpectTupleOfStringAnd42<["literal", 42]>;
