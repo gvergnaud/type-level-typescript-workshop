@@ -1,5 +1,7 @@
 # Type-Level TypeScript Workshop
 
+**NOTE: this is a WIP for our Devoxx workshop !**
+
 by @flegall and @gvergnaud
 
 ## Naming conventions
