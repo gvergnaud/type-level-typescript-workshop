@@ -17,11 +17,11 @@ Instead, let's use a more classic syntax
 ## Presentation 1 (30 min)
 
 1. ## About us?
-1. ## The type level language
+1. ## The type level language (Gabriel)
    - **it is a language!** (mental model: types is a separate language which has its own syntax an logic)
    - Why type level programming can be useful in the real world
    - summary of what this workshop will cover
-1. ## The data
+1. ## The data (Gabriel)
    - difference between primitive and literals
    - object and tuples
      - the `keyof` keyword
@@ -29,7 +29,7 @@ Instead, let's use a more classic syntax
      - `tuple[0]`,`tuple[1]`, etc.
      - `tuple["length"]`
    - arrays and records
-1. ## assignability
+1. ## assignability (Florent)
    - the concept of assignability
      - **types are sets** (mental model: everything is a union)
      - never and unknown (and any)
@@ -43,7 +43,7 @@ Instead, let's use a more classic syntax
      - type variance? https://gist.github.com/gvergnaud/57ef66ea05c539abb2eb787ea0433666
    - assignability quiz
    - syntax for type constraints
-1. ## code branching
+1. ## code branching (Florent)
    - conditional types
      - (mental model: `a extends b` as a question **"is any value of type `a` assignable to a type `b`?"**, or **"is the set `a` included in the set `b`?"**)
      - using ternary operator to write code branches
@@ -55,10 +55,10 @@ Instead, let's use a more classic syntax
 
 ## Presentation 2: type level algorithms
 
-1. ## introduction
+1. ## introduction (Florent)
    - Summary
      - we are going to cover loops, and general iteration patterns like map, filter and reduce.
-2. ## union types
+2. ## union types (Gabriel)
    - how to concatenate 2 union types
    - How conditional types **distribute** union members over their branches
      - if `a` is a union, `a extends b` will be tested for each member of this union
@@ -66,10 +66,10 @@ Instead, let's use a more classic syntax
    - how to **filter** a union type
      - this is a good reminder of `never`, the **empty union** type
        and how we can use it to our advantage.
-3. ## mapped types
+3. ## mapped types (Florent)
    - object types
    - tuples and arrays are object too, so you can use mapped types for them
-4. ## recursive conditional types
+4. ## recursive conditional types (Gabriel)
    - tuples
    - template literal types
    - this can be used in many ways
@@ -77,7 +77,7 @@ Instead, let's use a more classic syntax
      - to filter
      - to reduce
 5. ## Exercises 4 to 9
-6. ## Conclusion
+6. ## Conclusion (Gabriel)
    - limits
      - Performance
        - be careful of the cardinality of your union types! example the (requests union) & (viz union)
