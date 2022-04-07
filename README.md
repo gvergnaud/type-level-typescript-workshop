@@ -29,6 +29,14 @@ Instead, let's use a more classic syntax
      - `tuple[0]`,`tuple[1]`, etc.
      - `tuple["length"]`
    - arrays and records
+1. ## code branching (Florent)
+   - conditional types
+     - (mental model: `a extends b` as a question **"is any value of type `a` assignable to a type `b`?"**, or **"is the set `a` included in the set `b`?"**)
+     - using ternary operator to write code branches
+   - extracting values
+     - using `infer` to declare a type variable
+       - we can only use it in a the right-hand side of the `extends` keyword of a conditional type.
+     - similarities with **destructuring assignment** (or **pattern-matching**).
 1. ## assignability (Florent)
    - the concept of assignability
      - **types are sets** (mental model: everything is a union)
@@ -43,14 +51,6 @@ Instead, let's use a more classic syntax
      - type variance? https://gist.github.com/gvergnaud/57ef66ea05c539abb2eb787ea0433666
    - assignability quiz
    - syntax for type constraints
-1. ## code branching (Florent)
-   - conditional types
-     - (mental model: `a extends b` as a question **"is any value of type `a` assignable to a type `b`?"**, or **"is the set `a` included in the set `b`?"**)
-     - using ternary operator to write code branches
-   - extracting values
-     - using `infer` to declare a type variable
-       - we can only use it in a the right-hand side of the `extends` keyword of a conditional type.
-     - similarities with **destructuring assignment** (or **pattern-matching**).
 1. ## Exercises 1 to 3
 
 ## Presentation 2: type level algorithms
