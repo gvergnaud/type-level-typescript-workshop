@@ -25,21 +25,8 @@ namespace two {
   type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
 }
 
-// 3. Add support for regular query params
+// 3. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
+// to make sure the `params` object is correct!
 namespace three {
-  type ExtractUrlParams<url> = TODO;
-
-  type res1 = ExtractUrlParams<"/user/:username">;
-  type test1 = Expect<Equal<res1, { username: string }>>;
-
-  type res2 = ExtractUrlParams<"/user/:username/post/:postId">;
-  type test2 = Expect<Equal<res2, { username: string } & { postId: string }>>;
-
-  type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
-  type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
-
-  type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
-  type test4 = Expect<
-    Equal<res4, { orgId: string } & { dashboardId?: string }>
-  >;
+  function createUrl(url: TODO, params: TODO) {}
 }
