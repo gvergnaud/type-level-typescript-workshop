@@ -257,6 +257,8 @@ type t = IsGabriel<{
 ```ts
 // use `infer` to extract a part of the input type
 type GetTeam<U> = U extends { name: string; team: infer Team } ? Team : never;
+// is the "type level" equivalent of 
+const getTeam = ({name, team}) => team
 
 type t = GetTeam<{ name: "Pierre"; team: { name: "dataviz" } }>;
 // => { name: "dataviz" }
