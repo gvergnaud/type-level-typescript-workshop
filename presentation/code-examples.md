@@ -170,6 +170,25 @@ type t = { id: string } | { name: string } extends { name: string }
 ```
 
 ```ts
+// intersection assignability
+
+type t = { id: string } & { name: string } extends { id: string }
+  ? true
+  : false;
+// => true
+
+type t = { id: string } & { name: string } extends { name: string }
+  ? true
+  : false;
+// => true
+
+type t = { id: string } extends { id: string } & { name: string }
+  ? true
+  : false;
+// => false
+
+
+```ts
 // function assignability
 
 type t = (() => 2) extends () => number ? true : false;
