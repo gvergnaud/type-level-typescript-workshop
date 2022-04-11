@@ -392,8 +392,8 @@ type makeEnum<properties extends string> = { [k in properties]: k };
 type colorsEnum = makeEnum<"red" | "green" | "blue">;
 // => {red: "red", green: "green", blue: "blue"}
 
-type makeGetters<o> = {
-  [k in keyof o]: () => o[k];
+type makeGetters<objectType> = {
+  [k in keyof objectType]: () => objectType[k];
 };
 type t = makeGetters<{ id: string; name: string }>;
 // => {id: () => string, name: () => string}
