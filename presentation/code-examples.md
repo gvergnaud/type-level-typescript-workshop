@@ -275,6 +275,7 @@ type First<tuple> = tuple extends [infer first, ...any] ? first : never;
 const first = ([first]) => first;
 
 type t = First<["alpha", "beta", "gamma"]>; // => alpha
+type t = First<[]>; // => never
 ```
 
 ## Variable assignment
