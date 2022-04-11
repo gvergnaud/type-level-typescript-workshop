@@ -126,6 +126,19 @@ type t = Array<number> extends Array<42> ? true : false;
 // => false
 ```
 
+```ts
+// tuple assignability
+
+type t = [42, "datadog"] extends [number, string] ? true : false;
+// => true
+
+type t = [number, string] extends [42, "datadog"] ? true : false;
+// => false
+
+type t = [42, "datadog"] extends [number] ? true : false;
+// => false
+```
+
 
 ```ts
 // object assignability
