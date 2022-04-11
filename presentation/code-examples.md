@@ -191,17 +191,17 @@ type t = { id: string } extends { id: string } & { name: string }
 ```ts
 // function assignability
 
-type t = (() => 2) extends () => number ? true : false;
-// => ?
+type t = (() => 42) extends () => number ? true : false;
+// => true
 
-type t = (() => number) extends () => 10 ? true : false;
-// => ?
+type t = (() => number) extends () => 42 ? true : false;
+// => false
 
-type t = ((x: 2) => void) extends (x: number) => void ? true : false;
-// => ?
+type t = ((x: 42) => void) extends (x: number) => void ? true : false;
+// => false
 
-type t = ((x: number) => void) extends (x: 2) => void ? true : false;
-// => ?
+type t = ((x: number) => void) extends (x: 42) => void ? true : false;
+// => true
 ```
 
 ## Code branching = pattern matching
