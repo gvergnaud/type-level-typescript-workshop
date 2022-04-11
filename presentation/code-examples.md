@@ -92,6 +92,15 @@ type ko = is_best_number<41>; // false
 type If<A extends boolean, B, C> = A extends true ? B : C;
 
 type t = If<true, number, boolean>; // number
+
+// Nested conditions
+type getColor<n> = n extends 0
+  ? "black"
+  : n extends 1
+  ? "cyan"
+  : n extends 2
+  ? "magenta"
+  : "white";
 ```
 
 ### Assignability
