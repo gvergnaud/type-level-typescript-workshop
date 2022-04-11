@@ -385,3 +385,30 @@ const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
   oups: ":(",
 });
 ```
+### Mapped types
+
+```ts
+type colors = "red" | "green" | "blue";
+type makeEnum<properties extends string> = { [k in properties]: k };
+type colorsEnum = makeEnum<"red" | "green" | "blue">;
+// => {red: "red", green: "green", blue: "blue"}
+
+type makeGetters<o> = {
+  [k in keyof o]: () => o[k];
+};
+type t = makeGetters<{ id: string; name: string }>;
+// => {id: () => string, name: () => string}
+
+type changeArrayType<a extends Array<any>, newType> = {
+  [k in keyof a]: newType;
+};
+type arr1 = changeArrayType<number[], string>;
+// => string[]
+
+type numbersOrNull<a extends [...any]> = {
+  [k in keyof a]: a[k] extends number ? a[k] : null;
+};
+type arr2 = numbersOrNull<[42, number, boolean]>;
+// => [42, number, null]
+
+```
