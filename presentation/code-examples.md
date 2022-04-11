@@ -123,7 +123,7 @@ type t = Array<42> extends Array<number> ? true : false;
 // => true
 
 type t = Array<number> extends Array<42> ? true : false;
-// => true
+// => false
 ```
 
 
