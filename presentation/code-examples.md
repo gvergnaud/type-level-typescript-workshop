@@ -151,6 +151,25 @@ type t = { id: string } extends { id: string; name: string } ? true : false;
 ```
 
 ```ts
+// union assignability
+
+type t = { id: string } extends { id: string } | { name: string }
+  ? true
+  : false;
+// => true
+
+type t = { name: string } extends { id: string } | { name: string }
+  ? true
+  : false;
+// => true
+
+type t = { id: string } | { name: string } extends { name: string }
+  ? true
+  : false;
+// => false
+```
+
+```ts
 // function assignability
 
 type t = (() => 2) extends () => number ? true : false;
