@@ -186,7 +186,7 @@ type t = { id: string } extends { id: string } & { name: string }
   ? true
   : false;
 // => false
-
+```
 
 ```ts
 // function assignability
