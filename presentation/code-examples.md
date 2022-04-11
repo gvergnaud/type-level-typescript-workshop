@@ -388,7 +388,6 @@ const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
 ### Mapped types
 
 ```ts
-type colors = "red" | "green" | "blue";
 type makeEnum<properties extends string> = { [k in properties]: k };
 type colorsEnum = makeEnum<"red" | "green" | "blue">;
 // => {red: "red", green: "green", blue: "blue"}
