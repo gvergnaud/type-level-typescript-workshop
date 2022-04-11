@@ -89,13 +89,16 @@ type t = If<true, number, boolean>; // number
 ```ts
 // assignability
 
-type t = 2 extends number ? true : false;
+type t = 1 extends number ? true : false;
 // => true
 
-type t = true extends true | false ? true : false;
+type t = number extends 2 ? true : false;
+// => false
+
+type t = "data" extends string ? true : false;
 // => true
 
-type t = string extends "Hello" ? true : false;
+type t = string extends "dog" ? true : false;
 // => false
 ```
 
