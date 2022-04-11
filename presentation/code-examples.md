@@ -268,6 +268,12 @@ type t = GetTeam<{ name: "thibaut"; team: { name: "dashboard" } }>;
 
 type t = GetTeam<{ team: { name: "logs" } }>;
 // => never
+
+// use ìnfer` to extract a part of a tuple
+type First<tuple> = tuple extends [infer first, ...any] ? first : never;
+
+type t = First<["alpha", "beta", "gamma"]>; // => alpha
+type t = First<[]>; // never
 ```
 
 ## Variable assignment
