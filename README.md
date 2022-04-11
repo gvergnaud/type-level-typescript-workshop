@@ -61,7 +61,7 @@ Instead, let's use a more classic syntax
 2. ## union types (Gabriel)
    - how to concatenate 2 union types
    - How conditional types **distribute** union members over their branches
-     - if `a` is a union, `a extends b` will be tested for each member of this union
+     - if `a` is a union, `a extends b` will be tested for each member of this union. (this also happens for properties lookups)
    - How you can use this to map over a union type
    - how to **filter** a union type
      - this is a good reminder of `never`, the **empty union** type
