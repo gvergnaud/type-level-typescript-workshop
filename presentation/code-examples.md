@@ -143,11 +143,11 @@ type t = [42, "datadog"] extends [number] ? true : false;
 ```ts
 // object assignability
 
-type t = { a: string; b: string } extends { a: string } ? true : false;
-// => ?
+type t = { id: string; name: string } extends { id: string } ? true : false;
+// => true
 
-type t = { a: string } extends { a: string; b: string } ? true : false;
-// => ?
+type t = { id: string } extends { id: string; name: string } ? true : false;
+// => false
 ```
 
 ```ts
