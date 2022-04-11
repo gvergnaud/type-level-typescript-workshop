@@ -79,6 +79,9 @@ type Push<item, list extends any[]> = [...list, item]
 ### Branching
 
 ```ts
+// Conditions work by checking if A extends B
+type t = A extends B ? true : false;
+
 // Simple condition
 type is_best_number<n> = n extends 42 ? true : false;
 
