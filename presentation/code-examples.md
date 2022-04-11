@@ -87,7 +87,7 @@ type t = If<true, number, boolean>; // number
 ### Assignability
 
 ```ts
-// assignability of primitives
+// primitives assignability
 
 type t = 1 extends number ? true : false;
 // => true
@@ -104,7 +104,7 @@ type t = string extends "dog" ? true : false;
 
 
 ```ts
-// assignability of booleans
+// booleans assignability
 
 type t = true extends boolean ? true : false;
 // => true
@@ -114,6 +114,16 @@ type t = false extends boolean ? true : false;
 
 type t = boolean extends true ? true : false;
 // => false
+```
+
+```ts
+// array assignability
+
+type t = Array<42> extends Array<number> ? true : false;
+// => true
+
+type t = Array<number> extends Array<42> ? true : false;
+// => true
 ```
 
 
