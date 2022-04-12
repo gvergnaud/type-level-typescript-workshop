@@ -432,8 +432,18 @@ type First<tuple> = tuple extends [infer first, ...any] ? first : never;
 // is the type-level equivalent of:
 const first = ([first]) => first;
 
-type t = First<["alpha", "beta", "gamma"]>; // => alpha
+type t = First<["alpha", "beta", "gamma"]>; // => "alpha"
 type t = First<[]>; // => never
+
+type Rest<tuple> = tuple extends [any, ...infer rest]
+  ? rest
+  : [];
+// is the type-level equivalent of:
+const rest = ([first, ...rest]) => rest;
+
+type t = Rest<["alpha", "beta", "gamma"]>; // => ["beta", "gamma"];
+type t = Rest<["alpha"]>; // => []
+type t = Rest<[]>; // => []
 ```
 
 ## Variable assignment
@@ -546,26 +556,21 @@ const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
 ### Mapped types
 
 ```ts
-type makeEnum<properties extends string> = { [k in properties]: k };
-type colorsEnum = makeEnum<"red" | "green" | "blue">;
+type BuildEnum<properties extends string> = { [k in properties]: k };
+type colorsEnum = BuildEnum<"red" | "green" | "blue">;
 // => {red: "red", green: "green", blue: "blue"}
 
-type makeGetters<objectType> = {
+type BuildGetters<objectType> = {
   [k in keyof objectType]: () => objectType[k];
 };
-type t = makeGetters<{ id: string; name: string }>;
+type t = BuildGetters<{ id: string; name: string }>;
 // => {id: () => string, name: () => string}
 
-type changeArrayType<a extends Array<any>, newType> = {
-  [k in keyof a]: newType;
+type OrNull<T> = {
+  [K in keyof T]: T[K] | null;
 };
-type arr1 = changeArrayType<number[], string>;
-// => string[]
+type t = OrNull<[number, string]>;
+// => [number | null, string | null]
 
-type numbersOrNull<a extends [...any]> = {
-  [k in keyof a]: a[k] extends number ? a[k] : null;
-};
-type arr2 = numbersOrNull<[42, number, boolean]>;
-// => [42, number, null]
 
 ```
