@@ -243,7 +243,7 @@ type GetColor<n> = n extends 0
 const a: 42 = 42;
 const b: number = a; // OK, 42 is a number
 
-const a: number = 42;
+const a: number = 43;
 const b: 42 = c; // Not OK, a number is not assignable as 42.
 
 const a = {id: 42, name: "Florent"};
