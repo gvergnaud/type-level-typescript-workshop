@@ -238,6 +238,22 @@ type getColor<n> = n extends 0
 ```
 
 ### Assignability
+```ts
+// Assignability of variables
+const a: 42 = 42;
+const b: number = a; // OK, 42 is a number
+
+const a: number = 42;
+const b: 42 = a; // Not OK, a number is not assignable as 42.
+
+const a = {id: 42, name: "Florent"};
+const b: {id: number} = a; 
+// OK  {id: 42, name: "Florent"} can be assigned as {id: number}
+
+const a = {id: 42};
+const b: {id: number, name: string} = a; 
+// Not OK  {id: 42}; an be assigned as {id: number, name: string} it's missing the name property
+```
 
 ```ts
 // primitives assignability
