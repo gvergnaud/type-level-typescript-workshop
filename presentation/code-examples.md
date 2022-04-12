@@ -217,10 +217,10 @@ type Push<item, list extends any[]> = [...list, item]
 type t = A extends B ? true : false;
 
 // Simple condition
-type is_best_number<n> = n extends 42 ? true : false;
+type IsBestNumber<n> = n extends 42 ? true : false;
 
-type ok = is_best_number<42>; // true
-type ko = is_best_number<41>; // false
+type ok = IsBestNumber<42>; // true
+type ko = IsBestNumber<41>; // false
 
 // If
 type If<A extends boolean, B, C> = A extends true ? B : C;
