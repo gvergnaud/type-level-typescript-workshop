@@ -519,6 +519,19 @@ type t = Map<IsTwo, [1, 2, 3]>; // [false, true, false]
 ### Unions
 
 ```ts
+type LogStatus = "INFO" | "WARNING" | "ERROR";
+
+type GetColor<status extends LogStatus> = status extends "ERROR"
+  ? "red"
+  : status extends "WARNING"
+  ? "orange"
+  : "blue";
+
+type t = GetColor<"INFO" | "WARNING">;
+  // => "orange" | "blue"
+```
+
+```ts
 type Name = "Alice" | "Bob";
 
 type t = { name: Name }; // { name: "Alice" | "Bob" }
