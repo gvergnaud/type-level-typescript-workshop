@@ -244,7 +244,7 @@ const a: 42 = 42;
 const b: number = a; // OK, 42 is a number
 
 const a: number = 42;
-const b: 42 = a; // Not OK, a number is not assignable as 42.
+const b: 42 = c; // Not OK, a number is not assignable as 42.
 
 const a = {id: 42, name: "Florent"};
 const b: {id: number} = a; 
@@ -258,10 +258,10 @@ const b: {id: number, name: string} = a;
 ```ts
 // primitives assignability
 
-type t = 1 extends number ? true : false;
+type t = 42 extends number ? true : false;
 // => true
 
-type t = number extends 2 ? true : false;
+type t = number extends 42 ? true : false;
 // => false
 
 type t = "data" extends string ? true : false;
