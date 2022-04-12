@@ -547,10 +547,9 @@ type t = NameToObject<Name>;
 Filter
 
 ```ts
-type Name = "Alice" | "Bob" | "Karl";
+type FilterNames<n> = n extends `${"A" | "B"}${string}` ? n : never;
 
-type t = Name extends `${"A" | "B"}${string}` ? { name: Name } : never;
-// t: { name: "Alice" } | { name: "Bob" }
+type t = FilterNames<"Alice" | "Bob" | "Karl">; // => "Alice" | "Bob"
 ```
 
 ```ts
