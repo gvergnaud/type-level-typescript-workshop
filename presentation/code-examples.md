@@ -372,11 +372,11 @@ type t = ((x: 42) => void) extends (x: number) => void ? true : false;
 type t = ((x: number) => void) extends (x: 42) => void ? true : false;
 // => true
 
-const a = (n: 1 | 2) => {};
-const b: (n: number) => void = a;
-
 const a = (n: number) => {};
-const b: (n: 1 | 2) => void = x;
+const b: (n: 1 | 2) => void = x; // OK
+
+const a = (n: 1 | 2) => {};
+const b: (n: number) => void = a; // KO
 ```
 
 ## Code branching = pattern matching
