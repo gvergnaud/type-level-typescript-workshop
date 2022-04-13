@@ -88,7 +88,36 @@ namespace unions {
   expectAOrB(param4);
 }
 
-namespace intersections {}
+namespace intersections {
+  interface User {
+    user: string;
+  }
+  interface Id {
+    id: number;
+  }
+
+  /**
+   * We would like our expectUserWithId to accept the intersection of User & Id and to return the same type as passed
+   */
+  function expectUserWithId(param: TODO) {
+    return param;
+  }
+
+  const user: User = { user: "florent" };
+  const id = { id: 1234 };
+  const userWithId = { user: "florent", id: 1234 };
+
+  const userWithIdAndStatus = { user: "florent", id: 1234, status: "happy" };
+
+  expectUserWithId(userWithId);
+  // @ts-expect-error id is missing
+  expectUserWithId(user);
+  // @ts-expect-error user is missing
+  expectUserWithId(id);
+
+  // Should preserve status
+  const _: { status: string } = expectUserWithId(userWithIdAndStatus);
+}
 
 namespace tuples {
   type ExpectTupleOfStringAnd42<F extends TODO> = F;
