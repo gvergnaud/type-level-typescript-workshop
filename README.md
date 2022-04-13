@@ -89,8 +89,6 @@ Instead, let's use a more classic syntax
 
 Florent
 
-- exercises assignability
-- exercises conditional types
 - test cases recursive conditional types
 
 Gabriel

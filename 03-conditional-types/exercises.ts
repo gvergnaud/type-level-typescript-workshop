@@ -103,5 +103,22 @@ namespace five {
   type test3 = Expect<Equal<res3, "NOT A PROMISE">>;
 }
 
-// TODO
-namespace nestedTernaries {}
+/**
+ * Implement a GetHexColor that returns the hexadecimal color to a css color for a few known colors
+ */
+namespace six {
+  type Color = "red" | "green" | "blue" | "white";
+  type GetHexColor<color extends Color> = TODO;
+
+  type res1 = GetHexColor<"red">;
+  type test1 = Expect<Equal<res1, "#ff0000">>;
+
+  type res2 = GetHexColor<"green">;
+  type test2 = Expect<Equal<res2, "#00ff00">>;
+
+  type res3 = GetHexColor<"blue">;
+  type test3 = Expect<Equal<res3, "#0000ff">>;
+
+  type res4 = GetHexColor<"white">;
+  type test4 = Expect<Equal<res4, "#ffffff">>;
+}
