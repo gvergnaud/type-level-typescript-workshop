@@ -184,7 +184,7 @@ type Content = SomeArray[number]; // boolean
 ```ts
 type SomeRecord = { [k: string]: boolean };
 
-type Content = SomeRecord["_"]; // boolean
+type Content = SomeRecord[string]; // boolean
 ```
 
 ### Functions
@@ -238,6 +238,7 @@ type GetColor<n> = n extends 0
 ```
 
 ### Assignability
+
 ```ts
 // Assignability of variables
 const a: 42 = 42;
@@ -246,12 +247,12 @@ const b: number = a; // OK, 42 is a number
 const a: number = 43;
 const b: 42 = a; // Not OK, a number is not assignable as 42.
 
-const a = {id: 42, name: "Florent"};
-const b: {id: number} = a; 
+const a = { id: 42, name: "Florent" };
+const b: { id: number } = a;
 // OK  {id: 42, name: "Florent"} can be assigned as {id: number}
 
-const a = {id: 42};
-const b: {id: number, name: string} = a; 
+const a = { id: 42 };
+const b: { id: number; name: string } = a;
 // Not OK  {id: 42}; an be assigned as {id: number, name: string} it's missing the name property
 ```
 
@@ -270,7 +271,6 @@ type t = "data" extends string ? true : false;
 type t = string extends "dog" ? true : false;
 // => false
 ```
-
 
 ```ts
 // booleans assignability
@@ -307,7 +307,6 @@ type t = [number, string] extends [42, "datadog"] ? true : false;
 type t = [42, "datadog"] extends [number] ? true : false;
 // => false
 ```
-
 
 ```ts
 // object assignability
@@ -373,11 +372,11 @@ type t = ((x: number) => void) extends (x: 42) => void ? true : false;
 // => true
 
 const a = (n: number) => {};
-const b: (n: 1 | 2) => void = x; 
+const b: (n: 1 | 2) => void = x;
 // OK, function a accepts any number
 
 const a = (n: 1 | 2) => {};
-const b: (n: number) => void = a; 
+const b: (n: number) => void = a;
 // Not OK, function a only works with 1 | 2, it cannot accept any number.
 ```
 
@@ -416,7 +415,7 @@ type t = IsGabriel<{
 // use `infer` to extract a part of the input type
 type GetTeam<U> = U extends { name: string; team: infer Team } ? Team : never;
 // is the type-level equivalent of:
-const getTeam = ({name, team}) => team
+const getTeam = ({ name, team }) => team;
 
 type t = GetTeam<{ name: "Pierre"; team: { name: "dataviz" } }>;
 // => { name: "dataviz" }
@@ -435,9 +434,7 @@ const first = ([first]) => first;
 type t = First<["alpha", "beta", "gamma"]>; // => "alpha"
 type t = First<[]>; // => never
 
-type Rest<tuple> = tuple extends [any, ...infer rest]
-  ? rest
-  : [];
+type Rest<tuple> = tuple extends [any, ...infer rest] ? rest : [];
 // is the type-level equivalent of:
 const rest = ([first, ...rest]) => rest;
 
@@ -455,6 +452,132 @@ type SomeFunction<U> = SuperHeavyComputation<U> extends infer Result
   ? [Result, Result, Result]
   : never; // this will never happen
 ```
+
+## Part 2
+
+### Table of content
+
+This is were things become a bit more challenging (and fun!)
+
+In this section we will start writing more complex algorithms, looping through tuples and object types to produce more interesting outputs, etc.
+
+We will also see a new kind of data (structure): template literal types!
+
+### Template Literal Types
+
+Just like template literals at the value level, TypeScript let us use the same interpolation syntax at the type level:
+
+```ts
+type FirstName = "Gabriel";
+type LastName = "Vergnaud";
+
+type Name = `${FirstName} ${LastName}`; // "Gabriel Vergnaud"
+```
+
+---
+
+You can use Template Literal Types with primitive types too:
+
+```ts
+type FirstName = "Gabriel";
+
+type Gabriel = `${FirstName} ${string}`; // `Gabriel ${string}`
+```
+
+Any string literal starting with `Gabriel ` will be assignable the `Gabriel` type.
+
+---
+
+There are few generics at our disposal to change the casing of string literal types:
+
+```ts
+type t1 = Uppercase<"gabriel">;
+// => GABRIEL
+
+type t2 = Lowercase<"GABRIEL">;
+// => gabriel
+
+type t3 = Capitalize<"gabriel">;
+// => Gabriel
+
+type t4 = Uncapitalize<"Gabriel">;
+// => gabriel
+```
+
+---
+
+They can also be used to stringify other types:
+
+```ts
+type T = `${20} ${true}`; // "20 true"
+```
+
+---
+
+Template literal types can also be used with union types.
+This is very useful when you want to generate a list of combinations from several union types:
+
+```ts
+type Variant = "primary" | "secondary";
+type Size = "sm" | "md" | "lg";
+
+type ClassName = `${Variant}-${Size}`;
+// => "primary-sm" | "primary-md" | "primary-lg"
+//    | "secondary-sm" | "secondary-md" | "secondary-lg"
+```
+
+---
+
+Using template literal types with unions allows for regex-like matching:
+
+```ts
+type N = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
+
+type FrenchPhoneNumber = `+33 ${N} ${N}${N} ${N}${N} ${N}${N} ${N}${N}`;
+
+type t1 = "+33 1 23 45 67 89" extends FrenchPhoneNumber ? true : false;
+// => true
+
+type t2 = "+01 1 23 45 67 89" extends FrenchPhoneNumber ? true : false;
+// => false
+```
+
+---
+
+You can use `infer` inside a Template Literal Type to extract a subset of the string:
+
+```ts
+type GetNameTuple<name> = name extends `${infer firstName} ${infer lastName}`
+  ? [firstName, lastName]
+  : never;
+
+type t1 = GetNameTuple<"Florent Le Gall">; // ["Florent", "Le Gall"]
+type t2 = GetNameTuple<"Gabriel Vergnaud">; // ["Gabriel", "Vergnaud"]
+```
+
+---
+
+This is so powerful that it's even possible to write a full fledged SQL database purely at the type level:
+
+```ts
+import { Query } from "@codemix/ts-sql";
+
+const db = {
+  things: [
+    { id: 1, name: "a", active: true },
+    { id: 2, name: "b", active: false },
+    { id: 3, name: "c", active: true },
+  ],
+} as const;
+
+type ActiveThings = Query<
+  "SELECT id, name AS nom FROM things WHERE active = true",
+  typeof db
+>;
+// => [{ id: 1; nom: "a" }, { id: 3; nom: "c" }]
+```
+
+https://github.com/codemix/ts-sql
 
 ## Loops
 
@@ -528,7 +651,7 @@ type GetColor<status extends LogStatus> = status extends "ERROR"
   : "blue";
 
 type t = GetColor<"INFO" | "WARNING">;
-  // => "orange" | "blue"
+// => "orange" | "blue"
 ```
 
 ```ts
@@ -565,6 +688,7 @@ const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
   oups: ":(",
 });
 ```
+
 ### Mapped types
 
 ```ts
@@ -583,6 +707,4 @@ type OrNull<T> = {
 };
 type t = OrNull<[number, string]>;
 // => [number | null, string | null]
-
-
 ```
