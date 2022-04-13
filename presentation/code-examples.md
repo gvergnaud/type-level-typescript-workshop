@@ -591,54 +591,6 @@ type t = OrNull<{ a: number; b: string }>;
 // { a: number | null; b: string | null }
 ```
 
-### Tuples
-
-Reduce
-
-```ts
-type Includes<item, list> = list extends [infer head, ...infer tail]
-  ? head extends item
-    ? true
-    : Includes<item, tail> // recurse with the rest of the list
-  : false;
-
-type t = Includes<2, [1, 2, 3]>; // true
-type t = Includes<4, [1, 2, 3]>; // false
-```
-
-Filter
-
-```ts
-type OnlyNumbers<list> = list extends [infer head, ...infer tail]
-  ? head extends number
-    ? [head, ...OnlyNumbers<tail>]
-    : OnlyNumbers<tail>
-  : [];
-
-type t = OnlyNumbers<[1, 2, "toto", 3, "hello"]>; // [1, 2, 3]
-```
-
-Map
-
-```ts
-type MapIsTwo<list> = list extends [infer head, ...infer tail]
-  ? [head extends 2 ? true : false, ...MapIsTwo<tail>]
-  : [];
-
-type t = MapIsTwo<[1, 2, 3]>; // [false, true, false]
-```
-
-It would be nice to be able to write
-
-```ts
-type Map<fn, list> = list extends [infer head, ...infer tail]
-  ? [fn<head>, ...Map<fn, tail>]
-  : [];
-
-type IsTwo<T> = T extends 2 ? true : false;
-type t = Map<IsTwo, [1, 2, 3]>; // [false, true, false]
-```
-
 ### Unions
 
 ```ts
@@ -707,4 +659,139 @@ type OrNull<T> = {
 };
 type t = OrNull<[number, string]>;
 // => [number | null, string | null]
+```
+
+### Recursive Conditional Types
+
+With recursive conditional types, we start to really unlock the full potential of a programming language.
+
+We will see how using recursion let us map, filter and reduce tuple types, parse strings, and much more.
+
+🎢 Looping on a tuple type
+
+```ts
+type FindById<id, list> = list extends [infer first, ...infer rest]
+  ? first extends { id: id }
+    ? first
+    : FindById<id, rest> // recurse with the rest of the list
+  : never;
+
+type Users = [{ id: 1; name: "Florent" }, { id: 2; name: "Gabriel" }];
+
+type result1 = FindById<1, Users>; // { id: 1, name: "Florent" }
+type result2 = FindById<2, Users>; // { id: 2, name: "Gabriel" }
+```
+
+---
+
+The Structure of a recursive loop is always the same:
+
+```ts
+type SomeLoop<list, /* ... 🎁 some params */> =
+  list extends [infer first, ...infer rest] // 📥 split the list
+    ? first extends /* ... ❓ some condition */
+      ? /* ... ✅ base case, break the loop */
+      : FindById<rest, /* ... params */> // 🎢 recurse with the rest of the list
+    : never; // ❌ this isn't a loop;
+```
+
+---
+
+Mapping over a tuple
+
+```ts
+type ToNames<list> = list extends [infer first, ...infer rest]
+  ? [first extends { name: infer name } ? name : never, ...ToNames<rest>]
+  : [];
+
+type Users = [{ id: 1; name: "Florent" }, { id: 2; name: "Gabriel" }];
+
+type result = ToNames<Users>; // ["Florent", "Gabriel"]
+```
+
+---
+
+The structure of a mapping loop:
+
+```ts
+type SomeMap<list> = list extends [infer first, ...infer rest]
+  ? [ /* ... your mapper logic */ , ...SomeMap<rest>]
+  : [];
+```
+
+---
+
+If only we could abstract over this:
+
+```ts
+type Map<fn, list> = list extends [infer first, ...infer rest]
+  ? [fn<first>, ...Map<fn, rest>]
+  : [];
+
+type GetName<T> = T extends { name: infer name } ? name : never;
+
+type Users = [{ id: 1; name: "Florent" }, { id: 2; name: "Gabriel" }];
+
+type result = Map<GetName, Users>; // ["Florent", "Gabriel"]
+```
+
+But we can't pass functions as parameters to other
+functions in type-level TypeScript (Higher Order Functions).
+
+---
+
+Filter
+
+```ts
+type OnlyNumbers<list> = list extends [infer first, ...infer rest]
+  ? first extends number
+    ? [first, ...OnlyNumbers<rest>]
+    : OnlyNumbers<rest>
+  : [];
+
+type t = OnlyNumbers<[1, 2, "toto", 3, "hello"]>; // [1, 2, 3]
+```
+
+The structure of a filtering loop:
+
+```ts
+type SomeFilter<list> = list extends [infer first, ...infer rest]
+  ? first extends  /* ... ❓ some condition */
+    ? [first, ...SomeFilter<rest>]
+    : SomeFilter<rest>
+  : [];
+```
+
+---
+
+Recursive conditional types with template literal types.
+
+```ts
+type UnderscoresToSpaces<str> = str extends `${infer start}_${infer end}`
+  ? `${start} ${UnderscoresToSpaces<end>}`
+  : str;
+
+type result = UnderscoresToSpaces<"Hello_TypeScripters_attending_Devoxx!">;
+// => "Hello TypeScripters attending Devoxx!"
+```
+
+```ts
+type SnakeToCamel<str> = str extends `${infer start}_${infer end}`
+  ? `${start}${SnakeToCamel<Capitalize<end>>}`
+  : str;
+
+type result = SnakeToCamel<"i_love_python">;
+// => "iLovePython"
+```
+
+Since every type is a union, there is nothing special you need to do
+to handle a union type!
+
+```ts
+type SnakeToCamel<str> = str extends `${infer start}_${infer end}`
+  ? `${start}${SnakeToCamel<Capitalize<end>>}`
+  : str;
+
+type result = SnakeToCamel<"i_love_python" | "i_love_typescript">;
+// => "iLovePython" | "iLoveTypescript"
 ```
