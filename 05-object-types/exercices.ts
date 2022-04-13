@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-namespace */
+
 import { Equal, Expect, TODO } from "../helpers";
 
 // 1. Implement a generic which makes all keys of an object type optional.

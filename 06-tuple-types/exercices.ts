@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-namespace */
+
 import { Equal, Expect, TODO } from "../helpers";
 
 namespace one {

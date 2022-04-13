@@ -1,3 +1,5 @@
+/* eslint-disable  @typescript-eslint/no-namespace */
+
 import { Equal, Expect, TODO } from "../helpers";
 
 // 1. Implement a generic picking a union of selected keys
