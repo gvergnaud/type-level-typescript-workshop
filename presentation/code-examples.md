@@ -659,6 +659,12 @@ type OrNull<T> = {
 };
 type t = OrNull<[number, string]>;
 // => [number | null, string | null]
+
+type RenameProperties<obj extends { [key: string]: any }> = {
+  [k in keyof obj & string as `new_${k}`]: obj[k];
+};
+type t = RenameProperties<{ id: number; name: string }>;
+// => {new_id: number, new_name: string}
 ```
 
 ### Recursive Conditional Types

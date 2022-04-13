@@ -68,3 +68,20 @@ namespace three {
     Equal<res3, { name: string; isAdmin: boolean; isNice: boolean }>
   >;
 }
+
+namespace four {
+  type BuildGetters<obj extends { [key: string]: any }> = {
+    [k in keyof obj & string as `get_${k}`]: () => obj[k];
+  };
+
+  type res1 = BuildGetters<{ id: string }>;
+  type test1 = Expect<Equal<res1, { get_id: () => string }>>;
+
+  type res2 = BuildGetters<{ id: number; name: string; fortyTwo: 42 }>;
+  type test2 = Expect<
+    Equal<
+      res2,
+      { get_id: () => number; get_name: () => string; get_fortyTwo: () => 42 }
+    >
+  >;
+}
