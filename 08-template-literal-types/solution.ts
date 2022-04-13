@@ -27,7 +27,7 @@ namespace two {
   type test2 = Expect<Equal<res2, "ello Devoxx">>;
 }
 
-namespace two_5 {
+namespace three {
   type Size = "xl" | "l" | "m" | "s" | "xs";
   type Color = "primary" | "secondary" | "tertiary";
 
@@ -50,7 +50,7 @@ namespace two_5 {
   Button({ className: "primary-xxs" });
 }
 
-namespace three {
+namespace four {
   type SnakeToCamelCase<word extends string> =
     word extends `${infer firstWord}_${infer rest}`
       ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
@@ -66,7 +66,7 @@ namespace three {
   type test3 = Expect<Equal<res3, "helloTypeScript">>;
 }
 
-namespace four {
+namespace five {
   type SnakeToCamelCase<word extends string> =
     word extends `${infer firstWord}_${infer rest}`
       ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`

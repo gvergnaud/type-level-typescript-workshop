@@ -23,7 +23,7 @@ namespace two {
   type test2 = Expect<Equal<res2, "ello Devoxx">>;
 }
 
-namespace two_5 {
+namespace three {
   type Size = "xl" | "l" | "m" | "s" | "xs";
   type Color = "primary" | "secondary" | "tertiary";
 
@@ -47,7 +47,7 @@ namespace two_5 {
   Button({ className: "primary-xxs" });
 }
 
-namespace three {
+namespace four {
   type SnakeToCamelCase<word> = TODO;
 
   type res1 = SnakeToCamelCase<"hello">;
@@ -60,7 +60,7 @@ namespace three {
   type test3 = Expect<Equal<res3, "helloTypeScript">>;
 }
 
-namespace four {
+namespace five {
   // You may want to
   type CamelizeKeys<obj> = TODO;
 
