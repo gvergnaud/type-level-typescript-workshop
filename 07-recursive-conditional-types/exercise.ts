@@ -27,6 +27,18 @@ namespace one {
 // Bonus: Find an alternate implementation that doesn't require recursion.
 namespace two {
   type Every<tuple extends any[]> = TODO;
+
+  type res1 = Every<[true, false, false]>;
+  type test1 = Expect<Equal<res1, false>>;
+
+  type res2 = Every<[true, true, true, true, true]>;
+  type test2 = Expect<Equal<res2, true>>;
+
+  type res3 = Every<[false]>;
+  type test3 = Expect<Equal<res3, false>>;
+
+  type res4 = Every<[]>;
+  type test4 = Expect<Equal<res4, true>>; // Surprizingly Array.prototype.every() returns true on empty arrays
 }
 
 // 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
@@ -34,16 +46,28 @@ namespace two {
 // Bonus: Find an alternate implementation that doesn't require recursion.
 namespace three {
   type Some<tuple extends any[]> = TODO;
+
+  type res1 = Some<[true, false, false]>;
+  type test1 = Expect<Equal<res1, true>>;
+
+  type res2 = Some<[true, true, true, true, true]>;
+  type test2 = Expect<Equal<res2, true>>;
+
+  type res3 = Some<[false, false]>;
+  type test3 = Expect<Equal<res3, false>>;
+
+  type res4 = Some<[]>;
+  type test4 = Expect<Equal<res4, false>>;
 }
 
 /**
- * 1. Implement a `UnwrapPromise` generic type which unwraps all layers
+ * 4. Implement a `UnwrapPromise` generic type which unwraps all layers
  * of promises and return the value contained inside.
  *
  * For example, `UnwrapPromise<Promise<Promise<number>>>` should
  * return `number`.
  */
-namespace two {
+namespace four {
   type UnwrapPromise<input> = TODO;
 
   type res1 = UnwrapPromise<"NOT A PROMISE">;
@@ -60,13 +84,13 @@ namespace two {
 }
 
 /**
- * 2. Write a `All<Promises>` generic type which turns an array
+ * 5. Write a `All<Promises>` generic type which turns an array
  * of Promises into a Promise containing an array of values.
  *
  * For example, `All<[Promise<number>, Promise<string>, Promise<boolean>]>`
  * should return `[number, string, boolean]`.
  */
-namespace three {
+namespace five {
   type All<promises extends Array<any>> = TODO;
 
   type res1 = All<[Promise<number>]>;
