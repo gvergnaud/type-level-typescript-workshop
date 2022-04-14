@@ -37,19 +37,19 @@ namespace two {
   type test2 = Expect<Equal<res2, { username: string; postId: string }>>;
 }
 
-// 3. Add optional params.
-namespace three {
-  type ExtractUrlParams<url> = TODO;
-
-  type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
-  type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
-
-  type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
-  type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
-}
-
 namespace bonus {
-  // 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
+  // 3. Add optional params.
+  namespace three {
+    type ExtractUrlParams<url> = TODO;
+
+    type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
+    type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
+
+    type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
+    type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
+  }
+
+  // 4. make a `createURL(url, params)` function using the ExtractUrlParams type
   // to make sure the `params` object is correct!
   namespace four {
     function createURL(url: TODO, params: TODO) {}
@@ -78,7 +78,7 @@ namespace bonus {
    *
    * check out https://www.nytimes.com/games/wordle/index.html to try the actual game
    *
-   * This is very challenging, if you manage to solve it on your own congrats!
+   * This is challenging, if you manage to solve it on your own congrats!
    * You know as much as we do about type-level TypeScript now :).
    */
   namespace five {

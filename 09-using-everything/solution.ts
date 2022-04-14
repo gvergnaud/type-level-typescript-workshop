@@ -52,32 +52,32 @@ namespace two {
   type test2 = Expect<Equal<res2, { username: string } & { postId: string }>>;
 }
 
-// 3. Add optional params.
-namespace three {
-  export type ExtractUrlParams<url> =
-    url extends `${infer start}(${infer rest})`
-      ? ExtractUrlParams<start> & Partial<ExtractUrlParams<rest>>
-      : url extends `${infer start}/:${infer param}/${infer rest}`
-      ? ExtractUrlParams<start> &
-          ExtractUrlParams<rest> & {
+namespace bonus {
+  // 3. Add optional params.
+  namespace three {
+    export type ExtractUrlParams<url> =
+      url extends `${infer start}(${infer rest})`
+        ? ExtractUrlParams<start> & Partial<ExtractUrlParams<rest>>
+        : url extends `${infer start}/:${infer param}/${infer rest}`
+        ? ExtractUrlParams<start> &
+            ExtractUrlParams<rest> & {
+              [k in param]: string;
+            }
+        : url extends `${infer start}/:${infer param}`
+        ? ExtractUrlParams<start> & {
             [k in param]: string;
           }
-      : url extends `${infer start}/:${infer param}`
-      ? ExtractUrlParams<start> & {
-          [k in param]: string;
-        }
-      : {};
+        : {};
 
-  type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
-  type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
+    type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
+    type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
 
-  type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
-  type test4 = Expect<
-    Equal<res4, { orgId: string } & { dashboardId?: string }>
-  >;
-}
+    type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
+    type test4 = Expect<
+      Equal<res4, { orgId: string } & { dashboardId?: string }>
+    >;
+  }
 
-namespace bonus {
   // 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
   // to make sure the `params` object is correct!
   namespace four {
@@ -107,19 +107,16 @@ namespace bonus {
   namespace five {
     type todaysSecretWord = "READY";
 
-    type Wordle<str, word = todaysSecretWord, result extends string = ""> = [
-      str,
-      word
-    ] extends [
+    type Wordle<str, word = todaysSecretWord> = [str, word] extends [
       `${infer firstLetter}${infer rest}`,
       `${infer wordFirstLetter}${infer wordRest}`
     ]
       ? firstLetter extends wordFirstLetter
-        ? `${result} 🟩 ${Wordle<rest, wordRest>}`
+        ? ` 🟩 ${Wordle<rest, wordRest>}`
         : todaysSecretWord extends `${string}${firstLetter}${string}`
-        ? `${result} 🟨 ${Wordle<rest, wordRest>}`
-        : `${result} _ ${Wordle<rest, wordRest>}`
-      : result;
+        ? ` 🟨 ${Wordle<rest, wordRest>}`
+        : ` _ ${Wordle<rest, wordRest>}`
+      : "";
 
     type res1 = Wordle<"POINT">;
     type test1 = Expect<Equal<res1, " _  _  _  _  _ ">>;
