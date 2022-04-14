@@ -45,9 +45,11 @@ namespace two {
   type test4 = Expect<Equal<res4, { firstName: string; lastName: string }>>;
 }
 
-// 3. Implement a generic which takes an object type, a type of key, and a default type,
-// and if the object type contains this key, returns its type, otherwise returns
-// the default type.
+/**
+ * 3. Implement a generic which takes an object type, a type of key, and a default type,
+ *    and if the object type contains this key, returns its type, otherwise returns
+ *    the default type.
+ */
 namespace three {
   type SafeGet<obj, key, defaultType> = TODO;
 
@@ -68,8 +70,10 @@ namespace three {
   type test4 = Expect<Equal<res4, 10>>;
 }
 
-// 4. Now update the previous type to only accept keys of the object type
-// as second parameter.
+/**
+ * 4. Now update the previous type to only accept keys of the object type
+ * as second parameter.
+ */
 namespace four {
   type Get<obj, key> = TODO;
 
@@ -89,7 +93,7 @@ namespace four {
 
 /**
  * 5. implement a generic to extract the type parameter
- *    of another generic type
+ *    of another generic type.
  */
 namespace five {
   type UnwrapPromise<input> = TODO;
@@ -105,7 +109,8 @@ namespace five {
 }
 
 /**
- * Implement a GetHexColor that returns the hexadecimal color to a css color for a few known colors
+ * 6. Implement a GetHexColor that returns the hexadecimal
+ *    color to a css color for a few known colors.
  */
 namespace six {
   type Color = "red" | "green" | "blue" | "white";
