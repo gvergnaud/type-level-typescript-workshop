@@ -167,3 +167,35 @@ namespace five {
   type res5 = typeof res5;
   type test5 = Expect<Equal<res5, [number, string, boolean]>>;
 }
+
+namespace six {
+  type SnakeToCamelCase<word extends string> =
+    word extends `${infer firstWord}_${infer rest}`
+      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
+      : word;
+
+  type res1 = SnakeToCamelCase<"hello">;
+  type test1 = Expect<Equal<res1, "hello">>;
+
+  type res2 = SnakeToCamelCase<"hello_world">;
+  type test2 = Expect<Equal<res2, "helloWorld">>;
+
+  type res3 = SnakeToCamelCase<"hello_type_script">;
+  type test3 = Expect<Equal<res3, "helloTypeScript">>;
+}
+
+namespace seven {
+  type SnakeToCamelCase<word extends string> =
+    word extends `${infer firstWord}_${infer rest}`
+      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
+      : word;
+  type CamelizeKeys<obj> = {
+    [k in keyof obj as SnakeToCamelCase<k & string>]: obj[k];
+  };
+
+  type res1 = CamelizeKeys<{ age: number; first_name: string }>;
+  type test1 = Expect<Equal<res1, { age: number; firstName: string }>>;
+
+  type res2 = CamelizeKeys<{ age_of_the_captain: number }>;
+  type test2 = Expect<Equal<res2, { ageOfTheCaptain: number }>>;
+}

@@ -50,34 +50,29 @@ namespace three {
   Button({ className: "primary-xxs" });
 }
 
-namespace four {
-  type SnakeToCamelCase<word extends string> =
-    word extends `${infer firstWord}_${infer rest}`
-      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
-      : word;
+namespace bonus {
+  /**
+   * 4. Implement a generic extracting the first folder of a unix path.
+   */
+  namespace four {
+    type GetFirstFolder<path> = path extends `/${infer name}/${string}`
+      ? name
+      : path extends `/${infer name}`
+      ? name
+      : path extends `${infer name}/${string}`
+      ? name
+      : never;
 
-  type res1 = SnakeToCamelCase<"hello">;
-  type test1 = Expect<Equal<res1, "hello">>;
+    type res1 = GetFirstFolder<"/test">;
+    type test1 = Expect<Equal<res1, "test">>;
 
-  type res2 = SnakeToCamelCase<"hello_world">;
-  type test2 = Expect<Equal<res2, "helloWorld">>;
+    type res2 = GetFirstFolder<"/users/gab">;
+    type test2 = Expect<Equal<res2, "users">>;
 
-  type res3 = SnakeToCamelCase<"hello_type_script">;
-  type test3 = Expect<Equal<res3, "helloTypeScript">>;
-}
+    type res3 = GetFirstFolder<"users/gab">;
+    type test3 = Expect<Equal<res3, "users">>;
 
-namespace five {
-  type SnakeToCamelCase<word extends string> =
-    word extends `${infer firstWord}_${infer rest}`
-      ? `${firstWord}${Capitalize<SnakeToCamelCase<rest>>}`
-      : word;
-  type CamelizeKeys<obj> = {
-    [k in keyof obj as SnakeToCamelCase<k & string>]: obj[k];
-  };
-
-  type res1 = CamelizeKeys<{ age: number; first_name: string }>;
-  type test1 = Expect<Equal<res1, { age: number; firstName: string }>>;
-
-  type res2 = CamelizeKeys<{ age_of_the_captain: number }>;
-  type test2 = Expect<Equal<res2, { ageOfTheCaptain: number }>>;
+    type res4 = GetFirstFolder<"root/applications/vscode">;
+    type test4 = Expect<Equal<res4, "root">>;
+  }
 }

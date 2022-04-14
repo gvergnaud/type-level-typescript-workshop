@@ -46,56 +46,10 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic which takes an object type, a type of key, and a default type,
- *    and if the object type contains this key, returns its type, otherwise returns
- *    the default type.
+ * 3. implement a generic to extract the type parameter
+ *    of a Promise.
  */
 namespace three {
-  type SafeGet<obj, key, defaultType> = TODO;
-
-  type res1 = SafeGet<{ name: "Gabriel" }, "name", "Anonymous">;
-  type test1 = Expect<Equal<res1, "Gabriel">>;
-
-  type res2 = SafeGet<
-    { name: { firstName: string; lastName: string }; age: number },
-    "name",
-    "Anonymous"
-  >;
-  type test2 = Expect<Equal<res2, { firstName: string; lastName: string }>>;
-
-  type res3 = SafeGet<{ age: 25 }, "name", "Anonymous">;
-  type test3 = Expect<Equal<res3, "Anonymous">>;
-
-  type res4 = SafeGet<{ name: string; age: 10 }, "age", 0>;
-  type test4 = Expect<Equal<res4, 10>>;
-}
-
-/**
- * 4. Now update the previous type to only accept keys of the object type
- * as second parameter.
- */
-namespace four {
-  type Get<obj, key> = TODO;
-
-  type res1 = Get<{ name: "Gabriel" }, "name">;
-  type test1 = Expect<Equal<res1, "Gabriel">>;
-
-  type res2 = Get<
-    { name: { firstName: string; lastName: string }; age: number },
-    "name"
-  >;
-  type test2 = Expect<Equal<res2, { firstName: string; lastName: string }>>;
-  // @ts-expect-error
-  type test3 = Get<{ age: 25 }, "name">;
-  // @ts-expect-error
-  type test4 = Get<{ name: string }, "age">;
-}
-
-/**
- * 5. implement a generic to extract the type parameter
- *    of another generic type.
- */
-namespace five {
   type UnwrapPromise<input> = TODO;
 
   type res1 = UnwrapPromise<Promise<"Hello">>;
@@ -109,10 +63,10 @@ namespace five {
 }
 
 /**
- * 6. Implement a GetHexColor that returns the hexadecimal
+ * 4. Implement a GetHexColor that returns the hexadecimal
  *    color to a css color for a few known colors.
  */
-namespace six {
+namespace four {
   type Color = "red" | "green" | "blue" | "white";
   type GetHexColor<color extends Color> = TODO;
 
@@ -127,4 +81,57 @@ namespace six {
 
   type res4 = GetHexColor<"white">;
   type test4 = Expect<Equal<res4, "#ffffff">>;
+}
+
+/**
+ * Bonus exercises are optional!
+ */
+namespace bonus {
+  /**
+   * 5. Implement a generic which takes an object type, a type of key, and a default type,
+   *    and if the object type contains this key, returns its type, otherwise returns
+   *    the default type.
+   */
+  namespace five {
+    type SafeGet<obj, key, defaultType> = TODO;
+
+    type res1 = SafeGet<{ name: "Gabriel" }, "name", "Anonymous">;
+    type test1 = Expect<Equal<res1, "Gabriel">>;
+
+    type res2 = SafeGet<
+      { name: { firstName: string; lastName: string }; age: number },
+      "name",
+      "Anonymous"
+    >;
+    type test2 = Expect<Equal<res2, { firstName: string; lastName: string }>>;
+
+    type res3 = SafeGet<{ age: 25 }, "name", "Anonymous">;
+    type test3 = Expect<Equal<res3, "Anonymous">>;
+
+    type res4 = SafeGet<{ name: string; age: 10 }, "age", 0>;
+    type test4 = Expect<Equal<res4, 10>>;
+  }
+
+  /**
+   * 6. Implement a generic implementing the XOR logical door:
+   *    XOR<true, true> => false
+   *    XOR<false, false> => false
+   *    XOR<true, false> => true
+   *    XOR<false, true> => true
+   */
+  namespace six {
+    type XOR<bool1, bool2> = TODO;
+
+    type res1 = XOR<true, true>;
+    type t1 = Expect<Equal<res1, false>>;
+
+    type res2 = XOR<false, false>;
+    type t2 = Expect<Equal<res2, false>>;
+
+    type res3 = XOR<true, false>;
+    type t3 = Expect<Equal<res3, true>>;
+
+    type res4 = XOR<false, true>;
+    type t4 = Expect<Equal<res4, true>>;
+  }
 }

@@ -25,6 +25,12 @@ type DataStructures =
   | number[]; // arrays
 ```
 
+```ts
+type Intersections = X & Y;
+
+type Unions = X | Y;
+```
+
 ### Types are sets
 
 ```ts
@@ -208,6 +214,28 @@ type Push<item, list extends any[]> = [...list, item]
                    The constraint.
                    `list` has to be assignable
                    to any[]
+```
+
+### How exercises work
+
+```ts
+namespace one {
+  type KeyOf<obj> = TODO;
+
+  type res1 = KeyOf<{ a: number }>;
+  type test1 = Expect<Equal<res1, "a">>;
+}
+```
+
+```ts
+namespace bonus {
+  type AcceptStrings<a> = TODO;
+
+  type test1 = AcceptStrings<string>;
+
+  // @ts-expect-error: not a string!
+  type test2 = AcceptStrings<number>;
+}
 ```
 
 ### Branching

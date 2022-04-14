@@ -54,33 +54,51 @@ namespace three {
   type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
 }
 
-/**
- * 4. Implement a generic excluding values of an object type
- *    if they are assignable to a type passed as second parameter.
- *
- * Reminder: You can split your logic into several generic types
- * if that makes the code easier to understand.
- */
-namespace four {
-  type OmitByValue<obj, value> = TODO;
+namespace bonus {
+  /**
+   * 4. Implement a generic excluding values of an object type
+   *    if they are assignable to a type passed as second parameter.
+   *
+   * Reminder: You can split your logic into several generic types
+   * if that makes the code easier to understand.
+   */
+  namespace four {
+    type OmitByValue<obj, value> = TODO;
 
-  type User = {
-    name: string;
-    age: number;
-    isAdmin: boolean;
-    isNice: boolean;
-  };
+    type User = {
+      name: string;
+      age: number;
+      isAdmin: boolean;
+      isNice: boolean;
+    };
 
-  type res1 = OmitByValue<User, boolean>;
-  type test1 = Expect<Equal<res1, { name: string; age: number }>>;
+    type res1 = OmitByValue<User, boolean>;
+    type test1 = Expect<Equal<res1, { name: string; age: number }>>;
 
-  type res2 = OmitByValue<User, string>;
-  type test2 = Expect<
-    Equal<res2, { age: number; isAdmin: boolean; isNice: boolean }>
-  >;
+    type res2 = OmitByValue<User, string>;
+    type test2 = Expect<
+      Equal<res2, { age: number; isAdmin: boolean; isNice: boolean }>
+    >;
 
-  type res3 = OmitByValue<User, number>;
-  type test3 = Expect<
-    Equal<res3, { name: string; isAdmin: boolean; isNice: boolean }>
-  >;
+    type res3 = OmitByValue<User, number>;
+    type test3 = Expect<
+      Equal<res3, { name: string; isAdmin: boolean; isNice: boolean }>
+    >;
+  }
+
+  /**
+   * 5. Implement a generic converting all keys of an object
+   *    from UPPERCASE to lowercase.
+   *
+   * Hints: You will need to use the `as` keyword and a Template Literal Type
+   */
+  namespace five {
+    type LowercaseKeys<obj> = TODO;
+
+    type res1 = LowercaseKeys<{ AGE: number; FIRSTNAME: string }>;
+    type test1 = Expect<Equal<res1, { age: number; firstname: string }>>;
+
+    type res2 = LowercaseKeys<{ AGEOFTHECAPTAIN: number }>;
+    type test2 = Expect<Equal<res2, { ageofthecaptain: number }>>;
+  }
 }
