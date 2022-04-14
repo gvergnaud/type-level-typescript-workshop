@@ -3,6 +3,9 @@
 
 import { Equal, Expect, TODO } from "../helpers";
 
+/**
+ * 1. Implement a generic extracting the first letter of a string.
+ */
 namespace one {
   type FirstLetter<word> = TODO;
 
@@ -13,6 +16,9 @@ namespace one {
   type test2 = Expect<Equal<res2, "H">>;
 }
 
+/**
+ * 2. Implement a generic removing the first letter of a string.
+ */
 namespace two {
   type EndOfWord<word> = TODO;
 
@@ -23,14 +29,17 @@ namespace two {
   type test2 = Expect<Equal<res2, "ello Devoxx">>;
 }
 
+/**
+ * 3. find a smarter way of combining all size & colors to generate
+ *    the `ClassName` type.
+ */
 namespace three {
   type Size = "xl" | "l" | "m" | "s" | "xs";
   type Color = "primary" | "secondary" | "tertiary";
 
-  // TODO find a smarter way to combine all size & colors combinations rather listing those.
-  type ClassNames = "primary-l" | "secondary-s" | "primary-xl";
+  type ClassName = "primary-l" | "secondary-s" | "primary-xl";
 
-  const Button = ({ className }: { className: ClassNames }) =>
+  const Button = ({ className }: { className: ClassName }) =>
     `<button class="${className}">my button</button>`;
 
   Button({ className: "primary-l" });
@@ -47,6 +56,10 @@ namespace three {
   Button({ className: "primary-xxs" });
 }
 
+/**
+ * 4. Implement a generic to convert strings formatted in snake_case
+ *    into strings formatted in camelCase.
+ */
 namespace four {
   type SnakeToCamelCase<word> = TODO;
 
@@ -60,8 +73,11 @@ namespace four {
   type test3 = Expect<Equal<res3, "helloTypeScript">>;
 }
 
+/**
+ * 5. Implement a generic to converting all keys of an object
+ *    from snake_case to camelCase.
+ */
 namespace five {
-  // You may want to
   type CamelizeKeys<obj> = TODO;
 
   type res1 = CamelizeKeys<{ age: number; first_name: string }>;
