@@ -4,7 +4,7 @@
 import { Equal, Expect, Tuple, TODO } from "../helpers";
 
 /**
- * Implement a Reverse type that takes a tuple and reverses it.
+ * 1. Implement a Reverse type that takes a tuple and reverses it.
  */
 namespace one {
   type Reverse<tuple extends any[]> = TODO;
@@ -22,9 +22,11 @@ namespace one {
   type test4 = Expect<Equal<res4, [1]>>;
 }
 
-// 2. Using a rec. conditional a generic `Every` which given a tuple containing `true` or `false`,
-// returns the type `true` if every item in the tuple are equal to `true`.
-// Bonus: Find an alternate implementation that doesn't require recursion.
+/**
+ * 2. Using a rec. conditional a generic `Every` which given a tuple containing `true` or `false`,
+ *    returns the type `true` if every item in the tuple are equal to `true`.
+ *    Bonus: Find an alternate implementation that doesn't require recursion.
+ */
 namespace two {
   type Every<tuple extends any[]> = TODO;
 
@@ -41,9 +43,11 @@ namespace two {
   type test4 = Expect<Equal<res4, true>>; // Surprizingly Array.prototype.every() returns true on empty arrays
 }
 
-// 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
-// returns the type `true` if at least one item in the tuple is equal to `true`.
-// Bonus: Find an alternate implementation that doesn't require recursion.
+/**
+ * 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
+ *    returns the type `true` if at least one item in the tuple is equal to `true`.
+ *    Bonus: Find an alternate implementation that doesn't require recursion.
+ */
 namespace three {
   type Some<tuple extends any[]> = TODO;
 
