@@ -3,6 +3,9 @@
 
 import { Equal, Expect, TODO } from "../helpers";
 
+/**
+ *  1. Implement a generic which extracts the first element of a tuple.
+ */
 namespace one {
   type Head<tuple extends Array<any>> = TODO;
 
@@ -16,6 +19,10 @@ namespace one {
   type test3 = Expect<Equal<res3, never>>;
 }
 
+/**
+ *  2. Implement a generic which drops the first element of a tuple and returns
+ *     all other elements.
+ */
 namespace two {
   type Shift<tuple extends Array<any>> = TODO;
 
@@ -29,6 +36,9 @@ namespace two {
   type test3 = Expect<Equal<res3, []>>;
 }
 
+/**
+ *  3. Implement a generic which extracts the last element of a tuple.
+ */
 namespace three {
   type Last<tuple extends Array<any>> = TODO;
 
@@ -42,6 +52,10 @@ namespace three {
   type test3 = Expect<Equal<res3, never>>;
 }
 
+/**
+ *  4. Implement a generic which drops the last element of a tuple
+ *     and return all other elements.
+ */
 namespace four {
   type Pop<tuple extends Array<any>> = TODO;
 
@@ -55,6 +69,10 @@ namespace four {
   type test3 = Expect<Equal<res3, []>>;
 }
 
+/**
+ *  5. Implement a generic which pushes a type at the end
+ *     of a tuple type.
+ */
 namespace five {
   type Push<tuple extends Array<any>, element> = TODO;
 
@@ -65,6 +83,10 @@ namespace five {
   type test2 = Expect<Equal<res2, [1]>>;
 }
 
+/**
+ *  6. Implement a generic which pushes a type at the start
+ *     of a tuple type.
+ */
 namespace six {
   type Unshift<tuple extends Array<any>, element> = TODO;
 
@@ -75,6 +97,9 @@ namespace six {
   type test2 = Expect<Equal<res2, [1]>>;
 }
 
+/**
+ *  7. Implement a generic which concatenate two tuple types.
+ */
 namespace seven {
   type Concat<tuple1 extends Array<any>, tuple2 extends Array<any>> = TODO;
 
@@ -85,9 +110,11 @@ namespace seven {
   type test2 = Expect<Equal<res2, [1, 2, 3]>>;
 }
 
-// 9. Build a generic which takes a type and returns whether this is
-// a Tuple or not.
-namespace nine {
+/**
+ *  8. Implement a generic which takes a type and returns whether this is
+ *     a tuple or not.
+ */
+namespace eight {
   type IsTuple<tuple> = TODO;
 
   type res1 = IsTuple<[1, 2]>;
