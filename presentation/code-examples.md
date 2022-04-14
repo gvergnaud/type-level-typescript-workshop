@@ -725,8 +725,32 @@ type SomeLoop<list, /* ... 🎁 some params */> =
   list extends [infer first, ...infer rest] // 📥 split the list
     ? first extends /* ... ❓ some condition */
       ? /* ... ✅ base case, break the loop */
-      : FindById<rest, /* ... params */> // 🎢 recurse with the rest of the list
-    : never; // ❌ this isn't a loop;
+      : FindById<rest, /* ... params */> // 🎢 recurse on `rest`
+    : never; // ❌ this isn't a list
+```
+
+---
+
+A reduce loop: transforming a tuple into an object
+
+```ts
+type TupleToObject<tuple, acc = {}> = tuple extends [infer first, ...infer rest]
+  ? TupleToObject<rest, acc & { [k in first]: first }>
+  : acc;
+
+type test1 = TupleToObject<["hello", "eveyone"]>;
+// => { hello: "hello", everyone: "everyone" }
+```
+
+---
+
+The structure of a recursive reduce:
+
+```ts
+type SomeReduce<tuple, acc  = /* ... 📦 default value */> =
+  tuple extends [infer first, ...infer rest] // 📥 split the list
+  ? SomeReduce<rest, /* ... ✍️ accumulation */> // 🎢 recurse on `rest`
+  : acc; // 🎁 return thee result
 ```
 
 ---
@@ -748,9 +772,10 @@ type result = ToNames<Users>; // ["Florent", "Gabriel"]
 The structure of a mapping loop:
 
 ```ts
-type SomeMap<list> = list extends [infer first, ...infer rest]
-  ? [ /* ... your mapper logic */ , ...SomeMap<rest>]
-  : [];
+type SomeMap<list> =
+  list extends [infer first, ...infer rest]
+    ? [ /* ... your logic */ , ...SomeMap<rest>]
+    : [];
 ```
 
 ---
@@ -774,7 +799,7 @@ functions in type-level TypeScript (Higher Order Functions).
 
 ---
 
-Filter
+Filtering a tuple
 
 ```ts
 type OnlyNumbers<list> = list extends [infer first, ...infer rest]
@@ -786,14 +811,15 @@ type OnlyNumbers<list> = list extends [infer first, ...infer rest]
 type t = OnlyNumbers<[1, 2, "toto", 3, "hello"]>; // [1, 2, 3]
 ```
 
-The structure of a filtering loop:
+The structure of a filter loop:
 
 ```ts
-type SomeFilter<list> = list extends [infer first, ...infer rest]
-  ? first extends  /* ... ❓ some condition */
-    ? [first, ...SomeFilter<rest>]
-    : SomeFilter<rest>
-  : [];
+type SomeFilter<list> =
+  list extends [infer first, ...infer rest]
+    ? first extends  /* ... ❓ some condition */
+      ? [first, ...SomeFilter<rest>]
+      : SomeFilter<rest>
+    : [];
 ```
 
 ---
@@ -805,27 +831,18 @@ type UnderscoresToSpaces<str> = str extends `${infer start}_${infer end}`
   ? `${start} ${UnderscoresToSpaces<end>}`
   : str;
 
-type result = UnderscoresToSpaces<"Hello_TypeScripters_attending_Devoxx!">;
-// => "Hello TypeScripters attending Devoxx!"
-```
-
-```ts
-type SnakeToCamel<str> = str extends `${infer start}_${infer end}`
-  ? `${start}${SnakeToCamel<Capitalize<end>>}`
-  : str;
-
-type result = SnakeToCamel<"i_love_python">;
-// => "iLovePython"
+type result = UnderscoresToSpaces<"Hello_TypeScripters_of_Devoxx!">;
+// => "Hello TypeScripters of Devoxx!"
 ```
 
 Since every type is a union, there is nothing special you need to do
 to handle a union type!
 
 ```ts
-type SnakeToCamel<str> = str extends `${infer start}_${infer end}`
-  ? `${start}${SnakeToCamel<Capitalize<end>>}`
+type UnderscoresToSpaces<str> = str extends `${infer start}_${infer end}`
+  ? `${start} ${UnderscoresToSpaces<end>}`
   : str;
 
-type result = SnakeToCamel<"i_love_python" | "i_love_typescript">;
-// => "iLovePython" | "iLoveTypescript"
+type result = UnderscoresToSpaces<"i_love_python" | "i_love_typescript">;
+// => "i love python" | "i love typescript"
 ```
