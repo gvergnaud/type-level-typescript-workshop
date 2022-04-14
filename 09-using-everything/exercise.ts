@@ -82,7 +82,7 @@ namespace bonus {
    * You know as much as we do about type-level TypeScript now :).
    */
   namespace five {
-    type todaysSecretWorld = "READY";
+    type todaysSecretWord = "READY";
 
     type Wordle<str> = TODO;
 

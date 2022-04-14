@@ -105,9 +105,9 @@ namespace bonus {
 
   // 5. Implement a Wordle at the type level!
   namespace five {
-    type todaysSecretWorld = "READY";
+    type todaysSecretWord = "READY";
 
-    type Wordle<str, word = todaysSecretWorld, result extends string = ""> = [
+    type Wordle<str, word = todaysSecretWord, result extends string = ""> = [
       str,
       word
     ] extends [
@@ -116,7 +116,7 @@ namespace bonus {
     ]
       ? firstLetter extends wordFirstLetter
         ? `${result} 🟩 ${Wordle<rest, wordRest>}`
-        : todaysSecretWorld extends `${string}${firstLetter}${string}`
+        : todaysSecretWord extends `${string}${firstLetter}${string}`
         ? `${result} 🟨 ${Wordle<rest, wordRest>}`
         : `${result} _ ${Wordle<rest, wordRest>}`
       : result;
