@@ -66,7 +66,7 @@ namespace three {
 }
 
 /**
- * 4. Implement a generic which gets the length of a tuple type.
+ * 4. (Bonus) Implement a generic which gets the length of a tuple type.
  */
 namespace four {
   type Length<tuple extends any[]> = TODO;

@@ -31,12 +31,14 @@ namespace objects {
   /**
    * 2.1. Update the type of `increment` to accept all kind of parameters
    * which have at least a `{ count: number }` property.
+   *
+   * Hint: make the function generic!
    */
   namespace one {
-    const increment = (value: any): TODO => {
+    function increment(value: TODO): TODO {
       value.count++;
       return value;
-    };
+    }
 
     const res1 = increment({ type: "car" as const, count: 1 });
     type test1 = Expect<Equal<typeof res1, { type: "car"; count: number }>>;
@@ -54,6 +56,8 @@ namespace objects {
   /**
    * 2.2. implement a `Get` generic which takes an object type
    * and a property name and return the type of its value.
+   *
+   * Hint: a type constraint will be useful!
    */
   namespace two {
     type Get<obj, key> = TODO;
@@ -79,6 +83,8 @@ namespace unions {
   /**
    * 3.1 Update `expectCarOrBike` to accept either
    * 'car' or 'bike' and return it's input type.
+   *
+   * Hint: make the function generic!
    */
   namespace one {
     function expectCarOrBike(param: TODO) {
@@ -106,6 +112,8 @@ namespace intersections {
   /**
    * 4.1. Update `expectUserWithId` to accept the intersection
    * of `User` & `Id` and to return the same type as passed
+   *
+   * Hint: make the function generic!
    */
   namespace one {
     interface User {
