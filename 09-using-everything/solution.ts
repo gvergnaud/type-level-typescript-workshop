@@ -77,24 +77,63 @@ namespace three {
   >;
 }
 
-// 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
-// to make sure the `params` object is correct!
-namespace four {
-  function createURL<T extends string>(
-    path: T,
-    params: three.ExtractUrlParams<T>
-  ): string {
-    // ... interpolate params
-    return path;
+namespace bonus {
+  // 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
+  // to make sure the `params` object is correct!
+  namespace four {
+    function createURL<T extends string>(
+      path: T,
+      params: three.ExtractUrlParams<T>
+    ): string {
+      // ... interpolate params
+      return path;
+    }
+
+    createURL("org/:orgId/dashboard(/:dashboardId)", { orgId: "2" });
+    createURL("org/:orgId/dashboard(/:dashboardId)", {
+      orgId: "2",
+      dashboardId: "3",
+    });
+    // @ts-expect-error: orgId is missing
+    createURL("org/:orgId/dashboard(/:dashboardId)", { dashboardId: "2" });
+    createURL("org/:orgId/dashboard(/:dashboardId)", {
+      orgId: "2",
+      // @ts-expect-error: "oups" is an invalid param
+      oups: ":(",
+    });
   }
 
-  createURL("org/:orgId/dashboard(/:dashboardId)", { orgId: "2" });
-  createURL("org/:orgId/dashboard(/:dashboardId)", {
-    orgId: "2",
-    dashboardId: "3",
-  });
-  // @ts-expect-error: orgId is missing
-  createURL("org/:orgId/dashboard(/:dashboardId)", { dashboardId: "2" });
-  // @ts-expect-error: "oups" is an invalid param
-  createURL("org/:orgId/dashboard(/:dashboardId)", { orgId: "2", oups: ":(" });
+  // 5. Implement a Wordle at the type level!
+  namespace five {
+    type todaysSecretWorld = "READY";
+
+    type Wordle<str, word = todaysSecretWorld, result extends string = ""> = [
+      str,
+      word
+    ] extends [
+      `${infer firstLetter}${infer rest}`,
+      `${infer wordFirstLetter}${infer wordRest}`
+    ]
+      ? firstLetter extends wordFirstLetter
+        ? `${result} 🟩 ${Wordle<rest, wordRest>}`
+        : todaysSecretWorld extends `${string}${firstLetter}${string}`
+        ? `${result} 🟨 ${Wordle<rest, wordRest>}`
+        : `${result} _ ${Wordle<rest, wordRest>}`
+      : result;
+
+    type res1 = Wordle<"POINT">;
+    type test1 = Expect<Equal<res1, " _  _  _  _  _ ">>;
+
+    type res2 = Wordle<"NAMES">;
+    type test2 = Expect<Equal<res2, " _  🟨  _  🟨  _ ">>;
+
+    type res3 = Wordle<"CRANE">;
+    type test3 = Expect<Equal<res3, " _  🟨  🟩  _  🟨 ">>;
+
+    type res4 = Wordle<"READS">;
+    type test4 = Expect<Equal<res4, " 🟩  🟩  🟩  🟩  _ ">>;
+
+    type res5 = Wordle<"READY">;
+    type test5 = Expect<Equal<res5, " 🟩  🟩  🟩  🟩  🟩 ">>;
+  }
 }

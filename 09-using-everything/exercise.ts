@@ -48,8 +48,57 @@ namespace three {
   type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
 }
 
-// 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
-// to make sure the `params` object is correct!
-namespace four {
-  function createUrl(url: TODO, params: TODO) {}
+namespace bonus {
+  // 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
+  // to make sure the `params` object is correct!
+  namespace four {
+    function createURL(url: TODO, params: TODO) {}
+
+    createURL("org/:orgId/dashboard(/:dashboardId)", { orgId: "2" });
+    createURL("org/:orgId/dashboard(/:dashboardId)", {
+      orgId: "2",
+      dashboardId: "3",
+    });
+    // @ts-expect-error: orgId is missing
+    createURL("org/:orgId/dashboard(/:dashboardId)", { dashboardId: "2" });
+    createURL("org/:orgId/dashboard(/:dashboardId)", {
+      orgId: "2",
+      // @ts-expect-error: "oups" is an invalid param
+      oups: ":(",
+    });
+  }
+
+  /**
+   * 5. Implement a Wordle at the type level!
+   *
+   * If you don't know what Wordle is, it's a puzzle game in which players have
+   * six attempts to guess a five-letter word, with feedback given for each
+   * guess in the form of colored tiles indicating when letters match ("🟩"),
+   * occupy the correct position ("🟨") or don't match "_".
+   *
+   * check out https://www.nytimes.com/games/wordle/index.html to try the actual game
+   *
+   * This is very challenging, if you manage to solve it on your own congrats!
+   * You know as much as we do about type-level TypeScript now :).
+   */
+  namespace five {
+    type todaysSecretWorld = "READY";
+
+    type Wordle<str> = TODO;
+
+    type res1 = Wordle<"POINT">;
+    type test1 = Expect<Equal<res1, " _  _  _  _  _ ">>;
+
+    type res2 = Wordle<"NAMES">;
+    type test2 = Expect<Equal<res2, " _  🟨  _  🟨  _ ">>;
+
+    type res3 = Wordle<"CRANE">;
+    type test3 = Expect<Equal<res3, " _  🟨  🟩  _  🟨 ">>;
+
+    type res4 = Wordle<"READS">;
+    type test4 = Expect<Equal<res4, " 🟩  🟩  🟩  🟩  _ ">>;
+
+    type res5 = Wordle<"READY">;
+    type test5 = Expect<Equal<res5, " 🟩  🟩  🟩  🟩  🟩 ">>;
+  }
 }
