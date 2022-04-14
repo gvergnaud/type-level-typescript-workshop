@@ -4,10 +4,35 @@
 import { Equal, Expect } from "../helpers";
 
 /**
- * 1. Implement a `ExtractUrlParams<url>` generic extracting
- *    the of url parameters
+ * 1. Implement a `ExtractUrlParamNames<url>` generic
+ *    which returns a union type containing all parameters in
+ *    a given url.
+ *    Parameters start by `:` and end at the next `/`.
  */
 namespace one {
+  type ExtractUrlParams<url> =
+    url extends `${infer start}/:${infer param}/${infer rest}`
+      ? ExtractUrlParams<start> | ExtractUrlParams<rest> | param
+      : url extends `${infer start}/:${infer param}`
+      ? ExtractUrlParams<start> | param
+      : never;
+
+  type res1 = ExtractUrlParams<"/user/:username">;
+  type test1 = Expect<Equal<res1, "username">>;
+
+  type res2 = ExtractUrlParams<"/user/:username/post/:postId">;
+  type test2 = Expect<Equal<res2, "username" | "postId">>;
+
+  type res3 =
+    ExtractUrlParams<"/user/:username/post/:postId/comment/:commentId">;
+  type test3 = Expect<Equal<res3, "username" | "postId" | "commentId">>;
+}
+
+/**
+ * 2. Implement a `ExtractUrlParams<url>` generic extracting
+ *    the of url parameters
+ */
+namespace two {
   type ExtractUrlParams<url> =
     url extends `${infer start}/:${infer param}/${infer rest}`
       ? ExtractUrlParams<start> &
@@ -27,8 +52,8 @@ namespace one {
   type test2 = Expect<Equal<res2, { username: string } & { postId: string }>>;
 }
 
-// 2. Add optional params.
-namespace two {
+// 3. Add optional params.
+namespace three {
   export type ExtractUrlParams<url> =
     url extends `${infer start}(${infer rest})`
       ? ExtractUrlParams<start> & Partial<ExtractUrlParams<rest>>
@@ -52,12 +77,12 @@ namespace two {
   >;
 }
 
-// 3. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
+// 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
 // to make sure the `params` object is correct!
-namespace three {
+namespace four {
   function createURL<T extends string>(
     path: T,
-    params: two.ExtractUrlParams<T>
+    params: three.ExtractUrlParams<T>
   ): string {
     // ... interpolate params
     return path;
