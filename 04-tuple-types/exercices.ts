@@ -7,7 +7,7 @@ import { Equal, Expect, TODO } from "../helpers";
  *  1. Implement a generic which extracts the first element of a tuple.
  */
 namespace one {
-  type Head<tuple extends Array<any>> = TODO;
+  type Head<tuple extends any[]> = TODO;
 
   type res1 = Head<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 1>>;
@@ -24,7 +24,7 @@ namespace one {
  *     all other elements.
  */
 namespace two {
-  type Shift<tuple extends Array<any>> = TODO;
+  type Shift<tuple extends any[]> = TODO;
 
   type res1 = Shift<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, [2, 3]>>;
@@ -40,7 +40,7 @@ namespace two {
  *  3. Implement a generic which extracts the last element of a tuple.
  */
 namespace three {
-  type Last<tuple extends Array<any>> = TODO;
+  type Last<tuple extends any[]> = TODO;
 
   type res1 = Last<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, 3>>;
@@ -53,28 +53,11 @@ namespace three {
 }
 
 /**
- *  4. Implement a generic which drops the last element of a tuple
- *     and return all other elements.
- */
-namespace four {
-  type Pop<tuple extends Array<any>> = TODO;
-
-  type res1 = Pop<[1, 2, 3]>;
-  type test1 = Expect<Equal<res1, [1, 2]>>;
-
-  type res2 = Pop<[1]>;
-  type test2 = Expect<Equal<res2, []>>;
-
-  type res3 = Pop<[]>;
-  type test3 = Expect<Equal<res3, []>>;
-}
-
-/**
- *  5. Implement a generic which pushes a type at the end
+ *  4. Implement a generic which pushes a type at the end
  *     of a tuple type.
  */
-namespace five {
-  type Push<tuple extends Array<any>, element> = TODO;
+namespace four {
+  type Push<tuple extends any[], element> = TODO;
 
   type res1 = Push<[1, 2, 3], 4>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
@@ -84,24 +67,10 @@ namespace five {
 }
 
 /**
- *  6. Implement a generic which pushes a type at the start
- *     of a tuple type.
+ *  5. Implement a generic which concatenate two tuple types.
  */
-namespace six {
-  type Unshift<tuple extends Array<any>, element> = TODO;
-
-  type res1 = Unshift<[1, 2, 3], 4>;
-  type test1 = Expect<Equal<res1, [4, 1, 2, 3]>>;
-
-  type res2 = Unshift<[], 1>;
-  type test2 = Expect<Equal<res2, [1]>>;
-}
-
-/**
- *  7. Implement a generic which concatenate two tuple types.
- */
-namespace seven {
-  type Concat<tuple1 extends Array<any>, tuple2 extends Array<any>> = TODO;
+namespace five {
+  type Concat<tuple1 extends any[], tuple2 extends any[]> = TODO;
 
   type res1 = Concat<[1, 2, 3], [4]>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
@@ -110,22 +79,55 @@ namespace seven {
   type test2 = Expect<Equal<res2, [1, 2, 3]>>;
 }
 
-/**
- *  8. Implement a generic which takes a type and returns whether this is
- *     a tuple or not.
- */
-namespace eight {
-  type IsTuple<tuple> = TODO;
+namespace bonus {
+  /**
+   *  6. Implement a generic which drops the last element of a tuple
+   *     and return all other elements.
+   */
+  namespace six {
+    type DropLast<tuple extends any[]> = TODO;
 
-  type res1 = IsTuple<[1, 2]>;
-  type test1 = Expect<Equal<res1, true>>;
+    type res1 = DropLast<[1, 2, 3]>;
+    type test1 = Expect<Equal<res1, [1, 2]>>;
 
-  type res2 = IsTuple<[2]>;
-  type test2 = Expect<Equal<res2, true>>;
+    type res2 = DropLast<[1]>;
+    type test2 = Expect<Equal<res2, []>>;
 
-  type res3 = IsTuple<[]>;
-  type test3 = Expect<Equal<res3, true>>; // The empty tuple type `[]` is a tuple!
+    type res3 = DropLast<[]>;
+    type test3 = Expect<Equal<res3, []>>;
+  }
 
-  type res4 = IsTuple<any[]>;
-  type test4 = Expect<Equal<res4, false>>;
+  /**
+   *  7. Implement a generic which pushes a type at the start
+   *     of a tuple type.
+   */
+  namespace seven {
+    type Unshift<tuple extends any[], element> = TODO;
+
+    type res1 = Unshift<[1, 2, 3], 4>;
+    type test1 = Expect<Equal<res1, [4, 1, 2, 3]>>;
+
+    type res2 = Unshift<[], 1>;
+    type test2 = Expect<Equal<res2, [1]>>;
+  }
+
+  /**
+   *  8. Implement a generic which takes a type and returns whether this is
+   *     a tuple or not.
+   */
+  namespace eight {
+    type IsTuple<tuple> = TODO;
+
+    type res1 = IsTuple<[1, 2]>;
+    type test1 = Expect<Equal<res1, true>>;
+
+    type res2 = IsTuple<[2]>;
+    type test2 = Expect<Equal<res2, true>>;
+
+    type res3 = IsTuple<[]>;
+    type test3 = Expect<Equal<res3, true>>; // The empty tuple type `[]` is a tuple!
+
+    type res4 = IsTuple<any[]>;
+    type test4 = Expect<Equal<res4, false>>;
+  }
 }
