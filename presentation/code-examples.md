@@ -726,7 +726,7 @@ type SomeLoop<list, /* ... 🎁 some params */> =
     ? first extends /* ... ❓ some condition */
       ? /* ... ✅ base case, break the loop */
       : FindById<rest, /* ... params */> // 🎢 recurse on `rest`
-    : never; // ❌ this isn't a list
+    : someDefault; // ❌ the list is empty
 ```
 
 ---
