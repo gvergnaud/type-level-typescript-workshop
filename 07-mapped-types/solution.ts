@@ -38,8 +38,15 @@ namespace two {
   type test3 = Expect<Equal<res3, {}>>;
 }
 
-// 3. Implement a generic excluding a union of selected keys
-//    from an object type.
+/**
+ * 3. Implement a generic excluding a union of selected keys
+ *    from an object type.
+ *
+ * Hint: you can use `Exclude<union, excludedUnion>` to get the list
+ *       of keys which should remain on the object.
+ *       `Exclude` is part of TypeScript's standard library so you
+ *       don't need to import it.
+ */
 namespace three {
   type Omit<obj, keys extends keyof obj> = {
     [k in Exclude<keyof obj, keys>]: obj[k];
