@@ -61,13 +61,7 @@ namespace bonus {
    * 4. Implement a generic extracting the first folder of a unix path.
    */
   namespace four {
-    type GetFirstFolder<path> = path extends `/${infer name}/${string}`
-      ? name
-      : path extends `/${infer name}`
-      ? name
-      : path extends `${infer name}/${string}`
-      ? name
-      : never;
+    type GetFirstFolder<path> = TODO;
 
     type res1 = GetFirstFolder<"/test">;
     type test1 = Expect<Equal<res1, "test">>;
