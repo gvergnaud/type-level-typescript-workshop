@@ -11,7 +11,7 @@ namespace one {
   type test1 = Expect<Equal<res1, { a?: string }>>;
 
   type res2 = Partial<{ a: string; b: string }>;
-  type test2 = Expect<Equal<res2, { a: string; b: string }>>;
+  type test2 = Expect<Equal<res2, { a?: string; b?: string }>>;
 
   type res3 = Partial<{ a: string; b: string; c: string }>;
   type test3 = Expect<Equal<res3, { a?: string; b?: string; c?: string }>>;

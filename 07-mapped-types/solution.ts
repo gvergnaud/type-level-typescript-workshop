@@ -5,13 +5,15 @@ import { Equal, Expect, TODO } from "../helpers";
 
 // 1. Implement a generic which makes all keys of an object type optional.
 namespace one {
-  type Partial<obj> = TODO;
+  type Partial<obj> = {
+    [k in keyof obj]?: obj[k];
+  };
 
   type res1 = Partial<{ a: string }>;
   type test1 = Expect<Equal<res1, { a?: string }>>;
 
   type res2 = Partial<{ a: string; b: string }>;
-  type test2 = Expect<Equal<res2, { a: string; b: string }>>;
+  type test2 = Expect<Equal<res2, { a?: string; b?: string }>>;
 
   type res3 = Partial<{ a: string; b: string; c: string }>;
   type test3 = Expect<Equal<res3, { a?: string; b?: string; c?: string }>>;
