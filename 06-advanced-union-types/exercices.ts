@@ -27,7 +27,7 @@ namespace one {
  * 2. Implement a generic taking two union types and excluding one from the other
  */
 namespace two {
-  type Exclude<union, excludedUnion> = TODO;
+  type Exclude<union, excluded> = TODO;
 
   type res1 = Exclude<1 | 2 | 3, 1>;
   type test1 = Expect<Equal<res1, 2 | 3>>;
@@ -43,12 +43,12 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic taking a union type `a` and a second type parameter `b`,
- *    and excluding types in `a` which aren't assignable to `b`
+ * 3. Implement a generic taking a union type `union` and a second type parameter `included`,
+ *    and excluding types in `union` which aren't assignable to `included`
  *    Only if they are contained in the second one.
  */
 namespace three {
-  type Extract<union, includedUnion> = TODO;
+  type Extract<union, included> = TODO;
 
   type res1 = Extract<1 | 2 | 3, 1>;
   type test1 = Expect<Equal<res1, 1>>;
