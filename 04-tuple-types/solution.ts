@@ -1,5 +1,4 @@
-/* eslint-disable  @typescript-eslint/no-namespace */
-/* eslint-disable  @typescript-eslint/no-unused-vars */
+/* eslint-disable */
 
 import { Equal, Expect, TODO } from "../helpers";
 
@@ -73,7 +72,7 @@ namespace four {
 /**
  *  5. Implement a generic which extracts the last element of a tuple.
  */
- namespace five {
+namespace five {
   type Last<tuple extends any[]> = tuple extends [...any[], infer tail]
     ? tail
     : never;

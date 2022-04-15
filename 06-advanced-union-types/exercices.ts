@@ -1,5 +1,4 @@
-/* eslint-disable  @typescript-eslint/no-namespace */
-/* eslint-disable  @typescript-eslint/no-unused-vars */
+/* eslint-disable */
 
 import { Equal, Expect, TODO } from "../helpers";
 
@@ -24,7 +23,9 @@ namespace one {
   type test4 = Expect<Equal<res4, "stop" | "go">>;
 }
 
-// 2. Implement a generic taking two union types and excluding one from the other
+/**
+ * 2. Implement a generic taking two union types and excluding one from the other
+ */
 namespace two {
   type Exclude<union, excludedUnion> = TODO;
 
