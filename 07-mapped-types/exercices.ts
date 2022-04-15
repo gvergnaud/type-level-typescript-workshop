@@ -54,15 +54,30 @@ namespace three {
   type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
 }
 
+namespace four {
+  type BuildGetters<obj> = TODO;
+
+  type res1 = BuildGetters<{ id: string }>;
+  type test1 = Expect<Equal<res1, { get_id: () => string }>>;
+
+  type res2 = BuildGetters<{ id: number; name: string; fortyTwo: 42 }>;
+  type test2 = Expect<
+    Equal<
+      res2,
+      { get_id: () => number; get_name: () => string; get_fortyTwo: () => 42 }
+    >
+  >;
+}
+
 namespace bonus {
   /**
-   * 4. Implement a generic excluding values of an object type
+   * 5. Implement a generic excluding values of an object type
    *    if they are assignable to a type passed as second parameter.
    *
    * Reminder: You can split your logic into several generic types
    * if that makes the code easier to understand.
    */
-  namespace four {
+  namespace five {
     type OmitByValue<obj, value> = TODO;
 
     type User = {
@@ -87,12 +102,12 @@ namespace bonus {
   }
 
   /**
-   * 5. Implement a generic converting all keys of an object
+   * 6. Implement a generic converting all keys of an object
    *    from UPPERCASE to lowercase.
    *
    * Hints: You will need to use the `as` keyword and a Template Literal Type
    */
-  namespace five {
+  namespace six {
     type LowercaseKeys<obj> = TODO;
 
     type res1 = LowercaseKeys<{ AGE: number; FIRSTNAME: string }>;
