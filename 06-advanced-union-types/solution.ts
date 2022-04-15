@@ -26,7 +26,9 @@ namespace one {
 
 // 2. Implement a generic taking two union types and excluding one from the other
 namespace two {
-  type Exclude<list, blackList> = list extends blackList ? never : list;
+  type Exclude<union, excludedUnion> = union extends excludedUnion
+    ? never
+    : union;
 
   type res1 = Exclude<1 | 2 | 3, 1>;
   type test1 = Expect<Equal<res1, 2 | 3>>;
@@ -47,7 +49,9 @@ namespace two {
  *    Only if they are contained in the second one.
  */
 namespace three {
-  type Extract<list, whiteList> = list extends whiteList ? list : never;
+  type Extract<union, includedUnion> = union extends includedUnion
+    ? union
+    : never;
 
   type res1 = Extract<1 | 2 | 3, 1>;
   type test1 = Expect<Equal<res1, 1>>;
