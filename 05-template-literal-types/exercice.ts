@@ -47,7 +47,7 @@ namespace three {
   Button({ className: "primary-xl" });
   // The following ones should work as well.
   // Button({ className: "tertiary-xs" });
-  // Button({ className: "secondary-lg" });
+  // Button({ className: "secondary-l" });
 
   // The following ones should not work !
   // @ts-expect-error
