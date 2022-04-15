@@ -22,6 +22,8 @@ namespace one {
 /**
  * 2. Implement a generic picking a union of selected keys
  *    in an object type.
+ *
+ * Hint: You will need to add a type constraint on one type parameter.
  */
 namespace two {
   type Pick<obj, keys> = TODO;
@@ -39,6 +41,11 @@ namespace two {
 /**
  * 3. Implement a generic excluding a union of selected keys
  *    from an object type.
+ *
+ * Hint: you can use `Exclude<union, excludedUnion>` to get the list
+ *       of keys which should remain on the object.
+ *       `Exclude` is part of TypeScript's standard library so you
+ *       don't need to import it.
  */
 namespace three {
   type Omit<obj, keys> = TODO;
@@ -53,6 +60,10 @@ namespace three {
   type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
 }
 
+/**
+ * 4. Implement a generic which takes an object types, wraps
+ *    all properties in a getter function, and rename keys to `get_${key}`.
+ */
 namespace four {
   type BuildGetters<obj> = TODO;
 

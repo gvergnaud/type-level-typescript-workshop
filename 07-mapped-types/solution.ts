@@ -21,8 +21,12 @@ namespace one {
   type test4 = Expect<Equal<res4, {}>>;
 }
 
-// 2. Implement a generic picking a union of selected keys
-//    in an object type.
+/**
+ * 2. Implement a generic picking a union of selected keys
+ *    in an object type.
+ *
+ * Hint: You will need to add a type constraint on one type parameter.
+ */
 namespace two {
   type Pick<obj, keys extends keyof obj> = {
     [k in keys]: obj[k];

@@ -738,7 +738,7 @@ type TupleToObject<tuple, acc = {}> = tuple extends [infer first, ...infer rest]
   ? TupleToObject<rest, acc & { [k in first]: first }>
   : acc;
 
-type test1 = TupleToObject<["hello", "eveyone"]>;
+type test1 = TupleToObject<["hello", "everyone"]>;
 // => { hello: "hello", everyone: "everyone" }
 ```
 
@@ -750,7 +750,7 @@ The structure of a recursive reduce:
 type SomeReduce<tuple, acc  = /* ... 📦 default value */> =
   tuple extends [infer first, ...infer rest] // 📥 split the list
   ? SomeReduce<rest, /* ... ✍️ accumulation */> // 🎢 recurse on `rest`
-  : acc; // 🎁 return thee result
+  : acc; // 🎁 return the result
 ```
 
 ---

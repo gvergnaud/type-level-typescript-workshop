@@ -25,17 +25,17 @@ namespace one {
  *     all other elements.
  */
 namespace two {
-  type Shift<tuple extends any[]> = tuple extends [any, ...infer rest]
+  type DropFirst<tuple extends any[]> = tuple extends [any, ...infer rest]
     ? rest
     : [];
 
-  type res1 = Shift<[1, 2, 3]>;
+  type res1 = DropFirst<[1, 2, 3]>;
   type test1 = Expect<Equal<res1, [2, 3]>>;
 
-  type res2 = Shift<[1]>;
+  type res2 = DropFirst<[1]>;
   type test2 = Expect<Equal<res2, []>>;
 
-  type res3 = Shift<[]>;
+  type res3 = DropFirst<[]>;
   type test3 = Expect<Equal<res3, []>>;
 }
 
@@ -112,12 +112,12 @@ namespace bonus {
    *     of a tuple type.
    */
   namespace seven {
-    type Unshift<tuple extends any[], element> = [element, ...tuple];
+    type Prepend<tuple extends any[], element> = [element, ...tuple];
 
-    type res1 = Unshift<[1, 2, 3], 4>;
+    type res1 = Prepend<[1, 2, 3], 4>;
     type test1 = Expect<Equal<res1, [4, 1, 2, 3]>>;
 
-    type res2 = Unshift<[], 1>;
+    type res2 = Prepend<[], 1>;
     type test2 = Expect<Equal<res2, [1]>>;
   }
 
