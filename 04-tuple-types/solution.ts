@@ -41,9 +41,39 @@ namespace two {
 }
 
 /**
- *  3. Implement a generic which extracts the last element of a tuple.
+ *  3. Implement a generic which pushes a type at the end
+ *     of a tuple type.
  */
 namespace three {
+  type Push<tuple extends any[], element> = [...tuple, element];
+
+  type res1 = Push<[1, 2, 3], 4>;
+  type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
+
+  type res2 = Push<[], 1>;
+  type test2 = Expect<Equal<res2, [1]>>;
+}
+
+/**
+ *  4. Implement a generic which concatenate two tuple types.
+ */
+namespace four {
+  type Concat<tuple1 extends any[], tuple2 extends any[]> = [
+    ...tuple1,
+    ...tuple2
+  ];
+
+  type res1 = Concat<[1, 2, 3], [4]>;
+  type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
+
+  type res2 = Concat<[1, 2, 3], []>;
+  type test2 = Expect<Equal<res2, [1, 2, 3]>>;
+}
+
+/**
+ *  5. Implement a generic which extracts the last element of a tuple.
+ */
+ namespace five {
   type Last<tuple extends any[]> = tuple extends [...any[], infer tail]
     ? tail
     : never;
@@ -56,36 +86,6 @@ namespace three {
 
   type res3 = Last<[]>;
   type test3 = Expect<Equal<res3, never>>;
-}
-
-/**
- *  4. Implement a generic which pushes a type at the end
- *     of a tuple type.
- */
-namespace four {
-  type Push<tuple extends any[], element> = [...tuple, element];
-
-  type res1 = Push<[1, 2, 3], 4>;
-  type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
-
-  type res2 = Push<[], 1>;
-  type test2 = Expect<Equal<res2, [1]>>;
-}
-
-/**
- *  5. Implement a generic which concatenate two tuple types.
- */
-namespace five {
-  type Concat<tuple1 extends any[], tuple2 extends any[]> = [
-    ...tuple1,
-    ...tuple2
-  ];
-
-  type res1 = Concat<[1, 2, 3], [4]>;
-  type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
-
-  type res2 = Concat<[1, 2, 3], []>;
-  type test2 = Expect<Equal<res2, [1, 2, 3]>>;
 }
 
 namespace bonus {
