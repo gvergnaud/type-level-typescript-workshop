@@ -50,13 +50,19 @@ namespace two {
 namespace three {
   type Extract<union, included> = TODO;
 
-  type res1 = Extract<1 | 2 | 3, 1>;
-  type test1 = Expect<Equal<res1, 1>>;
+  // types used in unit tests:
 
   type unionOfObjects =
     | { type: "a"; name: string }
     | { type: "b"; name: string }
     | { type: "c" };
+
+  type mixedUnion = 1 | 2 | { name: string } | [1] | [1, 2] | string[];
+
+  // unit tests:
+
+  type res1 = Extract<1 | 2 | 3, 1>;
+  type test1 = Expect<Equal<res1, 1>>;
 
   type res2 = Extract<unionOfObjects, { type: "b" }>;
   type test2 = Expect<Equal<res2, { type: "b"; name: string }>>;
@@ -65,8 +71,6 @@ namespace three {
   type test3 = Expect<
     Equal<res3, { type: "a"; name: string } | { type: "b"; name: string }>
   >;
-
-  type mixedUnion = 1 | 2 | { name: string } | [1] | [1, 2] | string[];
 
   type res4 = Extract<mixedUnion, number>;
   type test4 = Expect<Equal<res4, 1 | 2>>;

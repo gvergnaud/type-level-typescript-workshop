@@ -43,34 +43,13 @@ namespace two {
 }
 
 /**
- * 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
- *    returns the type `true` if at least one item in the tuple is equal to `true`.
- *    Bonus: Find an alternate implementation that doesn't require recursion.
- */
-namespace three {
-  type Some<tuple extends any[]> = TODO;
-
-  type res1 = Some<[true, false, false]>;
-  type test1 = Expect<Equal<res1, true>>;
-
-  type res2 = Some<[true, true, true, true, true]>;
-  type test2 = Expect<Equal<res2, true>>;
-
-  type res3 = Some<[false, false]>;
-  type test3 = Expect<Equal<res3, false>>;
-
-  type res4 = Some<[]>;
-  type test4 = Expect<Equal<res4, false>>;
-}
-
-/**
- * 4. Implement a `UnwrapPromise` generic type which unwraps all layers
+ * 3. Implement a `UnwrapPromise` generic type which unwraps all layers
  * of promises and return the value contained inside.
  *
  * For example, `UnwrapPromise<Promise<Promise<number>>>` should
  * return `number`.
  */
-namespace four {
+namespace three {
   type UnwrapPromise<input> = TODO;
 
   type res1 = UnwrapPromise<"NOT A PROMISE">;
@@ -87,6 +66,27 @@ namespace four {
 }
 
 namespace bonus {
+  /**
+   * 4. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
+   *    returns the type `true` if at least one item in the tuple is equal to `true`.
+   *    Bonus: Find an alternate implementation that doesn't require recursion.
+   */
+  namespace four {
+    type Some<tuple extends any[]> = TODO;
+
+    type res1 = Some<[true, false, false]>;
+    type test1 = Expect<Equal<res1, true>>;
+
+    type res2 = Some<[true, true, true, true, true]>;
+    type test2 = Expect<Equal<res2, true>>;
+
+    type res3 = Some<[false, false]>;
+    type test3 = Expect<Equal<res3, false>>;
+
+    type res4 = Some<[]>;
+    type test4 = Expect<Equal<res4, false>>;
+  }
+
   /**
    * 5. Write a `All<Promises>` generic type which turns an array
    * of Promises into a Promise containing an array of values.

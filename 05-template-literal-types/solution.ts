@@ -3,30 +3,30 @@
 import { Equal, Expect, TODO } from "../helpers";
 
 /**
- * 1. find a smarter way of combining all size & colors to generate
- *    the `ClassName` type.
+ * 1. find a smarter way of combining all horizontal & vertical positions
+ *    to generate the `Position` type.
  */
 namespace one {
-  type Size = "xl" | "l" | "m" | "s" | "xs";
-  type Color = "primary" | "secondary" | "tertiary";
+  type Vertical = "top" | "center" | "bottom";
+  type Horizontal = "left" | "center" | "right";
 
-  type ClassNames = `${Color}-${Size}`;
+  type Position = `${Vertical}-${Horizontal}`;
 
-  const Button = ({ className }: { className: ClassNames }) =>
-    `<button class="${className}">my button</button>`;
+  const Button = ({ position }: { position: Position }) =>
+    `<button class="${position}">my button</button>`;
 
-  Button({ className: "primary-l" });
-  Button({ className: "secondary-s" });
-  Button({ className: "primary-xl" });
   // The following ones should work as well.
-  // Button({ className: "tertiary-xs" });
-  // Button({ className: "secondary-lg" });
+  Button({ position: "top-left" });
+  Button({ position: "bottom-center" });
+  Button({ position: "top-right" });
+  Button({ position: "center-center" });
+  Button({ position: "bottom-right" });
 
   // The following ones should not work !
   // @ts-expect-error
-  Button({ className: "oups-s" });
+  Button({ position: "bottom-middle" });
   // @ts-expect-error
-  Button({ className: "primary-xxs" });
+  Button({ position: "right-right" });
 }
 
 /**
