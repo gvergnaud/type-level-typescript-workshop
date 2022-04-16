@@ -9,21 +9,21 @@ import { Equal, Expect } from "../helpers";
  *    Parameters start by `:` and end at the next `/`.
  */
 namespace one {
-  type ExtractUrlParams<url> =
+  export type ExtractUrlParamNames<url> =
     url extends `${infer start}/:${infer param}/${infer rest}`
-      ? ExtractUrlParams<start> | ExtractUrlParams<rest> | param
+      ? ExtractUrlParamNames<start> | ExtractUrlParamNames<rest> | param
       : url extends `${infer start}/:${infer param}`
-      ? ExtractUrlParams<start> | param
+      ? ExtractUrlParamNames<start> | param
       : never;
 
-  type res1 = ExtractUrlParams<"/user/:username">;
+  type res1 = ExtractUrlParamNames<"/user/:username">;
   type test1 = Expect<Equal<res1, "username">>;
 
-  type res2 = ExtractUrlParams<"/user/:username/post/:postId">;
+  type res2 = ExtractUrlParamNames<"/user/:username/post/:postId">;
   type test2 = Expect<Equal<res2, "username" | "postId">>;
 
   type res3 =
-    ExtractUrlParams<"/user/:username/post/:postId/comment/:commentId">;
+    ExtractUrlParamNames<"/user/:username/post/:postId/comment/:commentId">;
   type test3 = Expect<Equal<res3, "username" | "postId" | "commentId">>;
 }
 

@@ -9,16 +9,16 @@ import { Equal, Expect, TODO } from "../helpers";
  *    Parameters start by `:` and end at the next `/`.
  */
 namespace one {
-  type ExtractUrlParams<url> = TODO;
+  type ExtractUrlParamNames<url> = TODO;
 
-  type res1 = ExtractUrlParams<"/user/:username">;
+  type res1 = ExtractUrlParamNames<"/user/:username">;
   type test1 = Expect<Equal<res1, "username">>;
 
-  type res2 = ExtractUrlParams<"/user/:username/post/:postId">;
+  type res2 = ExtractUrlParamNames<"/user/:username/post/:postId">;
   type test2 = Expect<Equal<res2, "username" | "postId">>;
 
   type res3 =
-    ExtractUrlParams<"/user/:username/post/:postId/comment/:commentId">;
+    ExtractUrlParamNames<"/user/:username/post/:postId/comment/:commentId">;
   type test3 = Expect<Equal<res3, "username" | "postId" | "commentId">>;
 }
 
@@ -37,7 +37,13 @@ namespace two {
 }
 
 namespace bonus {
-  // 3. Add optional params.
+  /**
+   * 3. Add support for optional params.
+   *    Optional params are contained in optional route sections, surrounded with parenthesis.
+   *
+   * Hint: You will need to use the standard library's `Partial` type.
+   *
+   */
   namespace three {
     type ExtractUrlParams<url> = TODO;
 
@@ -58,13 +64,16 @@ namespace bonus {
       orgId: "2",
       dashboardId: "3",
     });
-    // @ts-expect-error: orgId is missing
-    createURL("org/:orgId/dashboard(/:dashboardId)", { dashboardId: "2" });
-    createURL("org/:orgId/dashboard(/:dashboardId)", {
-      orgId: "2",
-      // @ts-expect-error: "oups" is an invalid param
-      oups: ":(",
-    });
+
+    // Uncomment these line to see if the tests pass:
+
+    // // @ts-expect-error: orgId is missing
+    // createURL("org/:orgId/dashboard(/:dashboardId)", { dashboardId: "2" });
+    // createURL("org/:orgId/dashboard(/:dashboardId)", {
+    //   orgId: "2",
+    //   // @ts-expect-error: "oups" is an invalid param
+    //   oups: ":(",
+    // });
   }
 
   /**
