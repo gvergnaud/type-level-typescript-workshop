@@ -80,6 +80,9 @@ namespace three {
 namespace bonus {
   /**
    * 4. (Bonus) Implement a generic which gets the length of a tuple type.
+   *
+   * Hint: How would you get the length of an array in JavaScript?
+   *       The type level version is very similar :)
    */
   namespace four {
     type Length<tuple extends any[]> = TODO;
