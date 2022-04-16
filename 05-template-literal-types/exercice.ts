@@ -43,24 +43,11 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic removing the first letter of a string.
- */
-namespace three {
-  type EndOfWord<word> = TODO;
-
-  type res1 = EndOfWord<"TYPE">;
-  type test1 = Expect<Equal<res1, "YPE">>;
-
-  type res2 = EndOfWord<"Hello Devoxx">;
-  type test2 = Expect<Equal<res2, "ello Devoxx">>;
-}
-
-/**
- * 4. Implement a generic that puts the first word of a phrase in UPPERCASE
+ * 3. Implement a generic that puts the first word of a phrase in UPPERCASE
  *
  * Hint: The first word is before the first space.
  */
-namespace four {
+namespace three {
   type UppercaseSecondWord<word> = TODO;
 
   type res1 = UppercaseSecondWord<"types are cool">;
@@ -72,9 +59,22 @@ namespace four {
 
 namespace bonus {
   /**
-   * 4. Implement a generic extracting the first folder of a unix path.
+   * 4. Implement a generic removing the first letter of a string.
    */
   namespace four {
+    type EndOfWord<word> = TODO;
+
+    type res1 = EndOfWord<"TYPE">;
+    type test1 = Expect<Equal<res1, "YPE">>;
+
+    type res2 = EndOfWord<"Hello Devoxx">;
+    type test2 = Expect<Equal<res2, "ello Devoxx">>;
+  }
+
+  /**
+   * 5. Implement a generic extracting the first folder of a unix path.
+   */
+  namespace five {
     type GetFirstFolder<path> = TODO;
 
     type res1 = GetFirstFolder<"/test">;
