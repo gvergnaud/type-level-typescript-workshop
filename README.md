@@ -1,10 +1,26 @@
-# Type-Level TypeScript Workshop
-
-**NOTE: this is a WIP for our Devoxx workshop !**
+# Type-Level TypeScript Workshop (🚧 WIP 🚧)
 
 by @flegall and @gvergnaud
 
-## Naming conventions
+**Welcome to the Type Level TypeScript Workshop!**
+
+In this course and workshop we hope to take your TypeScript skills from intermediate to **advanced**, and even make a real **TypeScript Wizard** of you! We will start by demonstrating that the type system of TypeScript is much more than simple type annotations: it's actually a full fledged **programming language** in itself! Once you know how to program with types, everything becomes possible. You will no longer feel like your ability to write the abstractions you need is restrained by the type system.
+
+Types are great for many reasons. They **document** the APIs you create, They make developers more **proficient** by providing them smart suggestions as they type and by catching mistakes and typos. The more the type system knows about your code, the better it is at helping you!
+
+Knowing how to write type-level algorithms helps us capture more of the **invariants** of our code in their types, so that the type-checker is able to catch more errors before they reach real users in productions.
+
+In order to get there we first need to aknowledge that the type system of TypeScript is a **real** and **unique** programming language. We believe it is worth learning it by starting with its fundamentals, just like we would do if we were to try a new programming language. To avoid the confusion between the whole TypeScript language (values and types), and the language of its type system (only types), we will call the latter **Type Level TypeScript** (or **TLTS** for short).
+
+Throughout this course and workshop, we will try to show you the correspondence between the programming concepts you already know (like **code branching**, **variable assignment**, **loops** and basic **data structures**) and their equivalent in Type Level TypeScript. By assembling those building blocks, we will teach you how to create (large and small) **algorithms** to make sure your abstractions are used as they should be.
+
+**⚠️ Attention**: this isn't a collection of TypeScript tricks! Instead this is a comprehensive course to get to know the **fundamentals of the type-level language**. I believe this approach is more empowering because it will help you **solve problems** we **haven't covered** in this course, just by putting your mental model to work. Knowing a few tricks can only get you so far, but mastering the building blocks of the language and the way they interact is what will enable you to solve your real-world problems.
+
+Finally, we will also see that moving more of the complexity of your code to the type level is a **trade-off** that isn't always worth taking. We will talk about compile time performance, type errors, type-level debugging and other downsides of type level programming. We hope this will help you reflect and take the right decision when using these techniques.
+
+[Let's get started!](tree/main/00-introduction)
+
+## Note onn naming conventions
 
 While it's very common to use upper-case single letters for generics because it works well for simple types: `Array<T>`, it doesn't read very well.
 
@@ -13,84 +29,3 @@ Instead, let's use a more classic syntax
 - Types (functions equivalent at type-level) should be named in camel-case with a leading upper-case letter : `type List = ...`
 - Type Parameters (parameters equivalent at type-level) should be named fully in camel-case with a leading lower-case letter : `type List<first, restOfTheList> = ...`
 - Inferred types (local variables equivalent at type level), should be named as well in camel-case with a leading lower-case letter : `type GetName<input> = input extends { name: infer name } ? ...`
-
-## Presentation 1 (30 min)
-
-1. ## About us?
-1. ## The type level language (Gabriel)
-   - **it is a language!** (mental model: types is a separate language which has its own syntax an logic)
-   - Why type level programming can be useful in the real world
-   - summary of what this workshop will cover
-1. ## The data (Gabriel)
-   - difference between primitive and literals
-   - object and tuples
-     - the `keyof` keyword
-     - the `object["somekey"]`
-     - `tuple[0]`,`tuple[1]`, etc.
-     - `tuple["length"]`
-   - arrays and records
-1. ## code branching (Florent)
-   - conditional types
-     - (mental model: `a extends b` as a question **"is any value of type `a` assignable to a type `b`?"**, or **"is the set `a` included in the set `b`?"**)
-     - using ternary operator to write code branches
-   - extracting values
-     - using `infer` to declare a type variable
-       - we can only use it in a the right-hand side of the `extends` keyword of a conditional type.
-     - similarities with **destructuring assignment** (or **pattern-matching**).
-1. ## assignability (Florent)
-   - the concept of assignability
-     - **types are sets** (mental model: everything is a union)
-     - never and unknown (and any)
-     - union and intersections of types
-   - assignability of literals and primitive types.
-   - assignability of arrays and tuples
-   - assignability of objects
-     - (interesting gotcha with unions and intersections: we don't count the keys but the number of instances.)
-   - assignability of unions
-   - assignability of functions
-     - type variance? https://gist.github.com/gvergnaud/57ef66ea05c539abb2eb787ea0433666
-   - assignability quiz
-   - syntax for type constraints
-1. ## Exercises 1 to 3
-
-## Presentation 2: type level algorithms
-
-1. ## introduction (Florent)
-   - Summary
-     - we are going to cover loops, and general iteration patterns like map, filter and reduce.
-2. ## union types (Gabriel)
-   - how to concatenate 2 union types
-   - How conditional types **distribute** union members over their branches
-     - if `a` is a union, `a extends b` will be tested for each member of this union. (this also happens for properties lookups)
-   - How you can use this to map over a union type
-   - how to **filter** a union type
-     - this is a good reminder of `never`, the **empty union** type
-       and how we can use it to our advantage.
-3. ## mapped types (Florent)
-   - object types
-   - tuples and arrays are object too, so you can use mapped types for them
-4. ## recursive conditional types (Gabriel)
-   - tuples
-   - template literal types
-   - this can be used in many ways
-     - to map
-     - to filter
-     - to reduce
-5. ## Exercises 4 to 9
-6. ## Conclusion (Gabriel)
-   - limits
-     - Performance
-       - be careful of the cardinality of your union types! example the (requests union) & (viz union)
-       - loops on large objects / tuples
-
-### TODO
-
-- Slides
-
-Florent
-
-- test cases recursive conditional types
-
-Gabriel
-
-- (maybe) add exercises on union types
