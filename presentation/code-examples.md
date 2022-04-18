@@ -55,11 +55,11 @@ function somethingComplex<A, B>(a: A, b: B): DoSomething<A, B> {
 
 This what type-level programming is! `DoSomething<A, B>` is type-level code written in a peculiar programming language that is entirely **different** from the language we are used to write everyday, but just as powerful. We will call this language **Type Level TypeScript** (TLTS).
 
+## The data
+
 Like every program, Type Level programs **transform some data** but unlike other programs, the data they transform are **types**!
 
 To master this language we will need to start by understanding the different sorts of data we have at our disposal.
-
-## The data
 
 ```ts
 type Primitives =
