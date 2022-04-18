@@ -7,7 +7,9 @@ import { Equal, Expect, TODO } from "../helpers";
  */
 namespace strings {
   /**
-   * 1.1. Add a constraint on the two functions types to make typechecking pass
+   * 1.1. Add constraints to the type parameter of these two functions.
+   *      The first one should be able to take any string.
+   *      The second one should only accept the string "hello".
    */
   namespace one {
     function expectString<P extends TODO>(param: P) {
@@ -34,8 +36,8 @@ namespace strings {
  */
 namespace objects {
   /**
-   * 2.1. Update the type of `increment` to accept all kind of parameters
-   * which have at least a `{ count: number }` property.
+   * 2.1. Update the type of `increment` to accept any type of value
+   *      which has at least a `count: number` property.
    *
    * Hint: make the function generic!
    */
@@ -60,7 +62,8 @@ namespace objects {
 
   /**
    * 2.2. implement a `Get` generic which takes an object type
-   * and a property name and return the type of its value.
+   *      and the name of a property of this object type and returns
+   *      the type of its value.
    *
    * Hint: a type constraint will be useful!
    */
@@ -92,7 +95,7 @@ namespace unions {
    * Hint: make the function generic!
    */
   namespace one {
-    function expectCarOrBike(param: TODO) {
+    function expectCarOrBike(param: TODO): TODO {
       return param;
     }
 
@@ -116,7 +119,10 @@ namespace unions {
  * 4. Tuples
  */
 namespace tuples {
-  // 5.1 Add the correct type constraint.
+  /**
+   * 5.1 Add a type constraint to only accept types which
+   *     can be assigned to [string, 42].
+   */
   namespace one {
     type ExpectTupleOfStringAnd42<F extends TODO> = F;
 
