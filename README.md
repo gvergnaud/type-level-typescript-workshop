@@ -20,12 +20,12 @@ Finally, we will also see that moving more of the complexity of your code to the
 
 [Let's get started!](tree/main/00-introduction)
 
-## Note onn naming conventions
+## Note on naming conventions
 
-While it's very common to use upper-case single letters for generics because it works well for simple types: `Array<T>`, it doesn't read very well.
+While it's very common to use upper-case single letters for generics because it works well for simple types: `Array<T>`, it doesn't read very well when types become more complex.
 
-Instead, let's use a more classic syntax
+In this workshop we will be using these naming conventions instead:
 
-- Types (functions equivalent at type-level) should be named in camel-case with a leading upper-case letter : `type List = ...`
-- Type Parameters (parameters equivalent at type-level) should be named fully in camel-case with a leading lower-case letter : `type List<first, restOfTheList> = ...`
-- Inferred types (local variables equivalent at type level), should be named as well in camel-case with a leading lower-case letter : `type GetName<input> = input extends { name: infer name } ? ...`
+- Generics should use TitleCase: `type List<a> = ...`
+- Type parameters should use camelCase: `type List<first, restOfTheList> = ...`
+- Inferred types (local variables), should use camelCase as well: `type GetName<input> = input extends { name: infer name } ? ...`
