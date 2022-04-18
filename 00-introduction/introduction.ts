@@ -3,13 +3,12 @@
  */
 
 /*
-First we need to make an important distinction between the language of the
-**value-level** and the language of the **value-level**. What does that mean
-exactly?
+First we need to make an important distinction between the language
+of the **value-level** and the language of the **type-level**.
+What does that mean exactly?
 
-One way to think about it is that the value-level is the code that **will be run**
-by your environment (may that be a web browser, or Node.js, etc) when your app
-will be used.
+One way to think about it is that the value-level is the code that
+**will be run** by your environment (may that be a web browser, Node.js, etc).
 
 JavaScript doesn't have types, so naturally **all** of JavaScript is
 **value-level** code:
@@ -47,7 +46,7 @@ function somethingComplex<A, B>(a: A, b: B): DoSomething<A, B> {
 }
 
 /*
-This what type-level programming is! `DoSomething<A, B>` is type-level code
+This is what type-level programming is! `DoSomething<A, B>` is type-level code
 written in a peculiar programming language that is entirely **different**
 from the language we are used to write everyday, but just as powerful.
 We will call this language **Type Level TypeScript** (TLTS).
