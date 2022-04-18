@@ -77,8 +77,10 @@ namespace bonus {
     >;
   }
 
-  // 4. Bonus: make a `createURL(url, params)` function using the ExtractUrlParams type
-  // to make sure the `params` object is correct!
+  /**
+   * 4. make a `createURL(url, params)` function using the ExtractUrlParams type
+   *    to make sure the `params` object is correct!
+   */
   namespace four {
     function createURL<T extends string>(
       path: T,

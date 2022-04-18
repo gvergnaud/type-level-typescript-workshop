@@ -46,8 +46,8 @@ namespace two {
 namespace three {
   /**
    * The `extends any[]` part is what we call a "type constraint".
-   * We haven't covered constraints yet, but we will in the next chapter.
-   * For now, just implement the type by replacing the TODO
+   * It makes sure the `tuple` type parameter will always be assignable
+   * to `any[]`. We will cover assignability in depth in the next chapter.
    */
   type ValueOf<tuple extends any[]> = TODO;
 

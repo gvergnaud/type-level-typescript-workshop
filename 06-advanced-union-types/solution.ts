@@ -44,21 +44,22 @@ namespace two {
 
 /**
  * 3. Implement a generic taking a union type `a` and a second type parameter `b`,
- *    and excluding types in `a` which aren't assignable to `b`
- *    Only if they are contained in the second one.
+ *    and excluding types in `a` which aren't assignable to `b`.
  */
 namespace three {
   type Extract<union, includedUnion> = union extends includedUnion
     ? union
     : never;
 
-  type res1 = Extract<1 | 2 | 3, 1>;
-  type test1 = Expect<Equal<res1, 1>>;
-
   type unionOfObjects =
     | { type: "a"; name: string }
     | { type: "b"; name: string }
     | { type: "c" };
+
+  type mixedUnion = 1 | 2 | { name: string } | [1] | [1, 2] | string[];
+
+  type res1 = Extract<1 | 2 | 3, 1>;
+  type test1 = Expect<Equal<res1, 1>>;
 
   type res2 = Extract<unionOfObjects, { type: "b" }>;
   type test2 = Expect<Equal<res2, { type: "b"; name: string }>>;
@@ -67,8 +68,6 @@ namespace three {
   type test3 = Expect<
     Equal<res3, { type: "a"; name: string } | { type: "b"; name: string }>
   >;
-
-  type mixedUnion = 1 | 2 | { name: string } | [1] | [1, 2] | string[];
 
   type res4 = Extract<mixedUnion, number>;
   type test4 = Expect<Equal<res4, 1 | 2>>;

@@ -24,7 +24,7 @@ namespace one {
 
 /**
  * 2. Implement a `ExtractUrlParams<url>` generic extracting
- *    the of url parameters
+ *    the type of url parameters as an object type.
  */
 namespace two {
   type ExtractUrlParams<url> = TODO;
@@ -38,8 +38,8 @@ namespace two {
 
 namespace bonus {
   /**
-   * 3. Add support for optional params.
-   *    Optional params are contained in optional route sections, surrounded with parenthesis.
+   * 3. Add support for optional params. Optional params are contained
+   *    in optional route sections, surrounded by parenthesis.
    *
    * Hint: You will need to use the standard library's `Partial` type.
    *
@@ -54,8 +54,10 @@ namespace bonus {
     type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
   }
 
-  // 4. make a `createURL(url, params)` function using the ExtractUrlParams type
-  // to make sure the `params` object is correct!
+  /**
+   * 4. make a `createURL(url, params)` function using the ExtractUrlParams type
+   *    to make sure the `params` object is correct!
+   */
   namespace four {
     function createURL(url: TODO, params: TODO) {}
 

@@ -36,16 +36,16 @@ namespace two {
 }
 
 /**
- *  3. Implement a generic which pushes a type at the end
+ *  3. Implement a generic which adds a type at the end
  *     of a tuple type.
  */
 namespace three {
-  type Push<tuple extends any[], element> = TODO;
+  type Append<tuple extends any[], element> = TODO;
 
-  type res1 = Push<[1, 2, 3], 4>;
+  type res1 = Append<[1, 2, 3], 4>;
   type test1 = Expect<Equal<res1, [1, 2, 3, 4]>>;
 
-  type res2 = Push<[], 1>;
+  type res2 = Append<[], 1>;
   type test2 = Expect<Equal<res2, [1]>>;
 }
 

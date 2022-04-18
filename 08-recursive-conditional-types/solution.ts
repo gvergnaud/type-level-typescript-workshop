@@ -26,9 +26,14 @@ namespace one {
   type test4 = Expect<Equal<res4, [1]>>;
 }
 
-// 2. Using a rec. conditional a generic `Every` which given a tuple containing `true` or `false`,
-// returns the type `true` if every item in the tuple are equal to `true`.
-// Bonus: Find an alternate implementation that doesn't require recursion.
+/**
+ * 2. Using a rec. conditional a generic `Every` which given a tuple
+ *    containing `true` or `false`, returns the type `true` if every
+ *    item in the tuple are equal to `true`.
+ *
+ * Bonus: Can you find an alternate implementation that doesn't require
+ * using recursion?
+ */
 namespace two {
   type Every<tuple extends any[]> = tuple extends [infer first, ...infer rest]
     ? first extends true
@@ -46,7 +51,7 @@ namespace two {
   type test3 = Expect<Equal<res3, false>>;
 
   type res4 = Every<[]>;
-  type test4 = Expect<Equal<res4, true>>; // Surprizingly Array.prototype.every() returns true on empty arrays
+  type test4 = Expect<Equal<res4, true>>;
 }
 
 namespace two_without_recursion {
@@ -62,56 +67,17 @@ namespace two_without_recursion {
   type test3 = Expect<Equal<res3, false>>;
 
   type res4 = Every<[]>;
-  type test4 = Expect<Equal<res4, true>>; // Surprizingly Array.prototype.every() returns true on empty arrays
-}
-
-// 3. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
-// returns the type `true` if at least one item in the tuple is equal to `true`.
-// Bonus: Find an alternate implementation that doesn't require recursion.
-namespace three {
-  type Some<tuple extends any[]> = tuple extends [infer first, ...infer rest]
-    ? first extends true
-      ? true
-      : Some<rest>
-    : false;
-
-  type res1 = Some<[true, false, false]>;
-  type test1 = Expect<Equal<res1, true>>;
-
-  type res2 = Some<[true, true, true, true, true]>;
-  type test2 = Expect<Equal<res2, true>>;
-
-  type res3 = Some<[false, false]>;
-  type test3 = Expect<Equal<res3, false>>;
-
-  type res4 = Some<[]>;
-  type test4 = Expect<Equal<res4, false>>;
-}
-
-namespace three_without_recursion {
-  type Some<tuple extends any[]> = true extends tuple[number] ? true : false;
-
-  type res1 = Some<[true, false, false]>;
-  type test1 = Expect<Equal<res1, true>>;
-
-  type res2 = Some<[true, true, true, true, true]>;
-  type test2 = Expect<Equal<res2, true>>;
-
-  type res3 = Some<[false, false]>;
-  type test3 = Expect<Equal<res3, false>>;
-
-  type res4 = Some<[]>;
-  type test4 = Expect<Equal<res4, false>>;
+  type test4 = Expect<Equal<res4, true>>;
 }
 
 /**
- * 4. Implement a `UnwrapPromise` generic type which unwraps all layers
+ * 3. Implement a `UnwrapPromise` generic type which unwraps all layers
  * of promises and return the value contained inside.
  *
  * For example, `UnwrapPromise<Promise<Promise<number>>>` should
  * return `number`.
  */
-namespace four {
+namespace three {
   export type UnwrapPromise<input> = input extends Promise<infer awaited>
     ? UnwrapPromise<awaited>
     : input;
@@ -129,6 +95,29 @@ namespace four {
   type test4 = Expect<Equal<res4, "Hello">>;
 }
 
+namespace four {
+  type Some<tuple extends any[]> = tuple extends [infer first, ...infer rest]
+    ? first extends true
+      ? true
+      : Some<rest>
+    : false;
+
+  // alternative implementation without recursion:
+  // type Some<tuple extends any[]> = true extends tuple[number] ? true : false;
+
+  type res1 = Some<[true, false, false]>;
+  type test1 = Expect<Equal<res1, true>>;
+
+  type res2 = Some<[true, true, true, true, true]>;
+  type test2 = Expect<Equal<res2, true>>;
+
+  type res3 = Some<[false, false]>;
+  type test3 = Expect<Equal<res3, false>>;
+
+  type res4 = Some<[]>;
+  type test4 = Expect<Equal<res4, false>>;
+}
+
 /**
  * 5. Write a `All<Promises>` generic type which turns an array
  * of Promises into a Promise containing an array of values.
@@ -138,7 +127,7 @@ namespace four {
  */
 namespace five {
   type All<promises> = promises extends [infer head, ...infer tail]
-    ? [four.UnwrapPromise<head>, ...All<tail>]
+    ? [three.UnwrapPromise<head>, ...All<tail>]
     : [];
 
   type res1 = All<[Promise<number>]>;

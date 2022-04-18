@@ -22,9 +22,12 @@ namespace one {
 }
 
 /**
- * 2. Using a rec. conditional a generic `Every` which given a tuple containing `true` or `false`,
- *    returns the type `true` if every item in the tuple are equal to `true`.
- *    Bonus: Find an alternate implementation that doesn't require recursion.
+ * 2. Using a rec. conditional a generic `Every` which given a tuple
+ *    containing `true` or `false`, returns the type `true` if every
+ *    item in the tuple are equal to `true`.
+ *
+ * Bonus: Can you find an alternate implementation that doesn't require
+ * using recursion?
  */
 namespace two {
   type Every<tuple extends any[]> = TODO;
@@ -39,7 +42,7 @@ namespace two {
   type test3 = Expect<Equal<res3, false>>;
 
   type res4 = Every<[]>;
-  type test4 = Expect<Equal<res4, true>>; // Surprizingly Array.prototype.every() returns true on empty arrays
+  type test4 = Expect<Equal<res4, true>>;
 }
 
 /**
@@ -67,9 +70,12 @@ namespace three {
 
 namespace bonus {
   /**
-   * 4. Using a rec. conditional a generic `Some` which given a tuple containing `true` or `false`,
-   *    returns the type `true` if at least one item in the tuple is equal to `true`.
-   *    Bonus: Find an alternate implementation that doesn't require recursion.
+   * 4. Using a rec. conditional a generic `Some` which given a tuple
+   *    containing `true` or `false`, returns the type `true` if at least
+   *    one item in the tuple is equal to `true`.
+   *
+   * Bonus: Can you find an alternate implementation that doesn't require
+   * using recursion?
    */
   namespace four {
     type Some<tuple extends any[]> = TODO;

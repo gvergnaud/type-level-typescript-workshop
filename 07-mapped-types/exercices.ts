@@ -2,7 +2,11 @@
 
 import { Equal, Expect, TODO } from "../helpers";
 
-// 1. Implement a generic which makes all keys of an object type optional.
+/**
+ * 1. Implement a generic which makes all keys of an object type optional.
+ *
+ * Hint: you will need to use the optional key syntax (key?: value).
+ */
 namespace one {
   type Partial<obj> = TODO;
 
@@ -20,8 +24,9 @@ namespace one {
 }
 
 /**
- * 2. Implement a generic picking a union of selected keys
- *    in an object type.
+ * 2. Implement a generic which picks a few selected keys
+ *    from an object type using a union of keys provided
+ *    as second parameter.
  *
  * Hint: You will need to add a type constraint on one type parameter.
  */
@@ -39,32 +44,12 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic excluding a union of selected keys
- *    from an object type.
+ * 3. Implement a generic which takes an object types, wraps
+ *    all properties in a getter function, and rename keys to `get_${key}`.
  *
- * Hint: you can use `Exclude<union, excludedUnion>` to get the list
- *       of keys which should remain on the object.
- *       `Exclude` is part of TypeScript's standard library so you
- *       don't need to import it.
+ * Hint: you will need to use the `as` syntax to rename keys.
  */
 namespace three {
-  type Omit<obj, keys> = TODO;
-
-  type res1 = Omit<{ a: string; b: string; c: string }, "a">;
-  type test1 = Expect<Equal<res1, { b: string; c: string }>>;
-
-  type res2 = Omit<{ a: string; b: string; c: string }, "a" | "b">;
-  type test2 = Expect<Equal<res2, { c: string }>>;
-
-  type res3 = Omit<{ a: string; b: string; c: string }, never>;
-  type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
-}
-
-/**
- * 4. Implement a generic which takes an object types, wraps
- *    all properties in a getter function, and rename keys to `get_${key}`.
- */
-namespace four {
   type BuildGetters<obj> = TODO;
 
   type res1 = BuildGetters<{ id: string }>;
@@ -80,6 +65,28 @@ namespace four {
 }
 
 namespace bonus {
+  /**
+   * 4. Implement a generic excluding a union of keys
+   *    from an object type.
+   *
+   * Hint: you can use `Exclude<union, excludedUnion>` to get the list
+   *       of keys which should remain on the object.
+   *       `Exclude` is part of TypeScript's standard library so you
+   *       don't need to import it.
+   */
+  namespace four {
+    type Omit<obj, keys> = TODO;
+
+    type res1 = Omit<{ a: string; b: string; c: string }, "a">;
+    type test1 = Expect<Equal<res1, { b: string; c: string }>>;
+
+    type res2 = Omit<{ a: string; b: string; c: string }, "a" | "b">;
+    type test2 = Expect<Equal<res2, { c: string }>>;
+
+    type res3 = Omit<{ a: string; b: string; c: string }, never>;
+    type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
+  }
+
   /**
    * 5. Implement a generic excluding values of an object type
    *    if they are assignable to a type passed as second parameter.

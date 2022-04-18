@@ -43,30 +43,12 @@ namespace two {
 }
 
 /**
- * 3. Implement a generic excluding a union of selected keys
- *    from an object type.
+ * 3. Implement a generic which takes an object types, wraps
+ *    all properties in a getter function, and rename keys to `get_${key}`.
  *
- * Hint: you can use `Exclude<union, excludedUnion>` to get the list
- *       of keys which should remain on the object.
- *       `Exclude` is part of TypeScript's standard library so you
- *       don't need to import it.
+ * Hint: you will need to use the `as` syntax to rename keys.
  */
 namespace three {
-  type Omit<obj, keys extends keyof obj> = {
-    [k in Exclude<keyof obj, keys>]: obj[k];
-  };
-
-  type res1 = Omit<{ a: string; b: string; c: string }, "a">;
-  type test1 = Expect<Equal<res1, { b: string; c: string }>>;
-
-  type res2 = Omit<{ a: string; b: string; c: string }, "a" | "b">;
-  type test2 = Expect<Equal<res2, { c: string }>>;
-
-  type res3 = Omit<{ a: string; b: string; c: string }, never>;
-  type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
-}
-
-namespace four {
   type BuildGetters<obj> = {
     [k in keyof obj & string as `get_${k}`]: () => obj[k];
   };
@@ -84,6 +66,30 @@ namespace four {
 }
 
 namespace bonus {
+  /**
+   * 4. Implement a generic excluding a union of selected keys
+   *    from an object type.
+   *
+   * Hint: you can use `Exclude<union, excludedUnion>` to get the list
+   *       of keys which should remain on the object.
+   *       `Exclude` is part of TypeScript's standard library so you
+   *       don't need to import it.
+   */
+  namespace four {
+    type Omit<obj, keys extends keyof obj> = {
+      [k in Exclude<keyof obj, keys>]: obj[k];
+    };
+
+    type res1 = Omit<{ a: string; b: string; c: string }, "a">;
+    type test1 = Expect<Equal<res1, { b: string; c: string }>>;
+
+    type res2 = Omit<{ a: string; b: string; c: string }, "a" | "b">;
+    type test2 = Expect<Equal<res2, { c: string }>>;
+
+    type res3 = Omit<{ a: string; b: string; c: string }, never>;
+    type test3 = Expect<Equal<res3, { a: string; b: string; c: string }>>;
+  }
+
   // 5. Implement a generic excluding values of an object type
   //    if they are assignable to a type passed as second parameter.
   namespace five {

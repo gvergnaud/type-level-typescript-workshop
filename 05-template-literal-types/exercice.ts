@@ -3,7 +3,7 @@
 import { Equal, Expect, TODO } from "../helpers";
 
 /**
- * 1. find a smarter way of combining all horizontal & vertical positions
+ * 1. find a smart way of combining all horizontal & vertical positions
  *    to generate the `Position` type.
  */
 namespace one {
@@ -23,10 +23,10 @@ namespace one {
   Button({ position: "bottom-right" });
 
   // The following ones should not work !
-  // @ts-expect-error
-  Button({ position: "bottom-middle" });
-  // @ts-expect-error
-  Button({ position: "right-right" });
+  // // @ts-expect-error
+  // Button({ position: "bottom-middle" });
+  // // @ts-expect-error
+  // Button({ position: "right-right" });
 }
 
 /**
