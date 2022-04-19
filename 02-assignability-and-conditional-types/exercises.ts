@@ -83,42 +83,71 @@ namespace four {
 }
 
 /**
+ * 5. Implement a generic which takes an object type, a type of key, and a default type,
+ *    and if the object type contains this key, returns its type, otherwise returns
+ *    the default type.
+ */
+namespace five {
+  type SafeGet<obj, key, defaultType> = TODO;
+
+  type res1 = SafeGet<{ name: "Gabriel" }, "name", "Anonymous">;
+  type test1 = Expect<Equal<res1, "Gabriel">>;
+
+  type res2 = SafeGet<
+    { name: { firstName: string; lastName: string }; age: number },
+    "name",
+    "Anonymous"
+  >;
+  type test2 = Expect<Equal<res2, { firstName: string; lastName: string }>>;
+
+  type res3 = SafeGet<{ age: 25 }, "name", "Anonymous">;
+  type test3 = Expect<Equal<res3, "Anonymous">>;
+
+  type res4 = SafeGet<{ name: string; age: 10 }, "age", 0>;
+  type test4 = Expect<Equal<res4, 10>>;
+}
+
+/**
  * Bonus exercises are optional!
  */
 namespace bonus {
   /**
-   * 5. Implement a generic which takes an object type, a type of key, and a default type,
-   *    and if the object type contains this key, returns its type, otherwise returns
-   *    the default type.
+   * 6. implement a `Get` generic which takes an object type
+   *      and the name of a property of this object type and returns
+   *      the type of its value.
+   *
+   * Hint: a type constraint will be useful!
    */
-  namespace five {
-    type SafeGet<obj, key, defaultType> = TODO;
+  namespace six {
+    type Get<obj, key> = TODO;
 
-    type res1 = SafeGet<{ name: "Gabriel" }, "name", "Anonymous">;
-    type test1 = Expect<Equal<res1, "Gabriel">>;
+    type res1 = Get<{ age: number }, "age">;
+    type test1 = Expect<Equal<res1, number>>;
 
-    type res2 = SafeGet<
-      { name: { firstName: string; lastName: string }; age: number },
-      "name",
-      "Anonymous"
+    type res2 = Get<{ firstName: string; lastName: string }, "firstName">;
+    type test2 = Expect<Equal<res2, string>>;
+
+    type res3 = Get<
+      { firstName: string; lastName: string },
+      // This parameter shouldn't be allowed because
+      // this object doesn't contain a `age_of_the_captain`.
+      // ⚠️ Uncomment the ts-expect-error bellow:
+      // // @ts-expect-error
+      "age_of_the_captain"
     >;
-    type test2 = Expect<Equal<res2, { firstName: string; lastName: string }>>;
-
-    type res3 = SafeGet<{ age: 25 }, "name", "Anonymous">;
-    type test3 = Expect<Equal<res3, "Anonymous">>;
-
-    type res4 = SafeGet<{ name: string; age: 10 }, "age", 0>;
-    type test4 = Expect<Equal<res4, 10>>;
   }
 
   /**
-   * 6. Implement a generic implementing the XOR logical door:
+   * 7. Implement a generic implementing the XOR logical door:
    *    XOR<true, true> => false
    *    XOR<false, false> => false
    *    XOR<true, false> => true
    *    XOR<false, true> => true
+   *
+   * Hint: you can check several values at once by wrapping them
+   *       in a tuple type (pattern matching).
    */
-  namespace six {
+  namespace seven {
     type XOR<bool1, bool2> = TODO;
 
     type res1 = XOR<true, true>;
