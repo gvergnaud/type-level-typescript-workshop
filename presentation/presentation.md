@@ -55,6 +55,22 @@ function somethingComplex<A, B>(a: A, b: B): DoSomething<A, B> {
 
 This is what type-level programming is! `DoSomething<A, B>` is type-level code written in a peculiar programming language that is entirely **different** from the language we are used to writing everyday, but just as powerful. We will call this language **Type Level TypeScript** (TLTS).
 
+Real world code example:
+
+```ts
+const orgUrl = createURL("org/:orgId", { orgId: "2" });
+
+const dashboardUrl = createURL("org/:orgId/dashboard(/:dashboardId)", {
+  orgId: "2",
+  dashboardId: "3",
+});
+
+const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
+  orgId: "2",
+  oups: ":(", // ⚠️ this shouldn't type-check
+});
+```
+
 ## The data
 
 Like every program, Type Level programs **transform some data** but unlike other programs, the data they transform are **types**!
@@ -297,7 +313,7 @@ namespace bonus {
 }
 ```
 
-### Branching
+### Code Branching
 
 ```ts
 // Conditions work by checking if A extends B
@@ -550,7 +566,7 @@ In this section we will start writing more complex algorithms, looping through t
 
 We will also see a new kind of data (structure): template literal types!
 
-### Template Literal Types
+## Template Literal Types
 
 Just like template literals at the value level, TypeScript let us use the same interpolation syntax at the type level:
 
@@ -668,17 +684,7 @@ https://github.com/codemix/ts-sql
 
 ## Loops
 
-### Objects
-
-```ts
-type OrNull<T> = {
-  [K in keyof T]: T[K] | null;
-};
-type t = OrNull<{ a: number; b: string }>;
-// { a: number | null; b: string | null }
-```
-
-### Unions
+## Advanced Union Types
 
 ```ts
 type LogStatus = "INFO" | "WARNING" | "ERROR";
@@ -714,21 +720,7 @@ type FilterNames<n> = n extends `${"A" | "B"}${string}` ? n : never;
 type t = FilterNames<"Alice" | "Bob" | "Karl">; // => "Alice" | "Bob"
 ```
 
-```ts
-const orgUrl = createURL("org/:orgId", { orgId: "2" });
-
-const dashboardUrl = createURL("org/:orgId/dashboard(/:dashboardId)", {
-  orgId: "2",
-  dashboardId: "3",
-});
-
-const invalid = createURL("org/:orgId/dashboard(/:dashboardId)", {
-  orgId: "2",
-  oups: ":(",
-});
-```
-
-### Mapped types
+## Mapped types
 
 ```ts
 type BuildEnum<properties extends string> = {
@@ -761,7 +753,7 @@ type t = RenameProperties<{ id: number; name: string }>;
 // => {new_id: number, new_name: string}
 ```
 
-### Recursive Conditional Types
+## Recursive Conditional Types
 
 With recursive conditional types, we start to really unlock the full potential of a programming language.
 
