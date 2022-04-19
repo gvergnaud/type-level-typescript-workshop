@@ -63,7 +63,7 @@ Functional programming might make you think of concepts like _immutability_, avo
 Well in the case of **TLTS** it essentially means that functions are the only mean of abstraction we have at our disposal. Functions in TypeScript are called **generics**: they takes one or several **type parameters** and return a single type as **output**. Here is a simple example of a function taking 2 type parameters and wrapping them in a tuple:
 
 ```ts
-type SomeFunction<A, B> = [A, B]
+type SomeFunction<A, B> = [A, B];
 /*                ----    ----
                    ^       \
                   type      return type
@@ -72,6 +72,7 @@ type SomeFunction<A, B> = [A, B]
     \----------------------/
               ^
            Generic
+*/
 ```
 
 TLTS doesn't have a lot of features, after all it was design exclusively to type actual code that runs in production, so that makes sense! It supports:
@@ -80,7 +81,7 @@ TLTS doesn't have a lot of features, after all it was design exclusively to type
 - **Variable assignment**: declaring a varialbe to use it in an expression (the equivalent of the `var`/`let` keywords we use at the value-level).
 - **Basic functions**, such as the one we have seen in the previous example.
 - **Loops**, usually through recursion.
-- **Equality checks**
+- **Equality checks** (===).
 - etc.
 
 And here is the list of features it doesn't support:
