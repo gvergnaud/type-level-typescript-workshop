@@ -38,16 +38,17 @@ namespace one {
  *    the of url parameters
  */
 namespace two {
+  type CreateParamObject<keys extends string> = {
+    [k in keys]: string;
+  };
+
   type ExtractUrlParams<url> =
     url extends `${infer start}/:${infer param}/${infer rest}`
-      ? ExtractUrlParams<start> &
-          ExtractUrlParams<rest> & {
-            [k in param]: string;
-          }
+      ? CreateParamObject<param> &
+          ExtractUrlParams<start> &
+          ExtractUrlParams<rest>
       : url extends `${infer start}/:${infer param}`
-      ? ExtractUrlParams<start> & {
-          [k in param]: string;
-        }
+      ? CreateParamObject<param> & ExtractUrlParams<start>
       : {};
 
   type res1 = ExtractUrlParams<"/user/:username">;

@@ -90,9 +90,7 @@ namespace four {
 
 namespace five {
   type SafeGet<obj, key, defaultType> = key extends keyof obj
-    ? obj[key] extends infer value
-      ? value
-      : defaultType
+    ? obj[key]
     : defaultType;
 
   type res1 = SafeGet<{ name: "Gabriel" }, "name", "Anonymous">;
