@@ -54,12 +54,12 @@ namespace two {
  * Hint: The first word is before the first space.
  */
 namespace three {
-  type UppercaseSecondWord<word> = TODO;
+  type UppercaseFirstWord<word> = TODO;
 
-  type res1 = UppercaseSecondWord<"types are cool">;
+  type res1 = UppercaseFirstWord<"types are cool">;
   type test1 = Expect<Equal<res1, "TYPES are cool">>;
 
-  type res2 = UppercaseSecondWord<"awesome challenge!">;
+  type res2 = UppercaseFirstWord<"awesome challenge!">;
   type test2 = Expect<Equal<res2, "AWESOME challenge!">>;
 }
 
