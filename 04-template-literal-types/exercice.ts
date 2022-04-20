@@ -2,6 +2,12 @@
 
 import { Equal, Expect, TODO } from "../helpers";
 
+// CodeSandbox's eslint has issues with template literal types
+// https://github.com/codesandbox/codesandbox-client/issues/6630
+// Better have this error once here rather than where you have to use that syntax.
+// This an ESLint issue, not a typescript issue, you can trust other errors :)
+type TriggerESLintIssue = `${"a"}`;
+
 /**
  * 1. find a smart way of combining all horizontal & vertical positions
  *    to generate the `Position` type.
