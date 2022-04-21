@@ -20,6 +20,10 @@ Finally, we will also see that moving more of the complexity of your code to the
 
 [Let's get started!](tree/main/00-introduction)
 
+### [Workshop Slides](https://bit.ly/3jUf7ub)
+
+### [Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/README.md)
+
 ## Note on naming conventions
 
 While it's very common to use upper-case single letters for generics because it works well for simple types: `Array<T>`, it doesn't read very well when types become more complex.
