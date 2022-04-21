@@ -1,4 +1,6 @@
-# Type-Level TypeScript Workshop (🚧 WIP 🚧)
+# ✨ Type-Level TypeScript Workshop ✨
+
+🚧 the textual version of the workshop is still a Work In Progress 🚧
 
 by [@flegall](https://twitter.com/flornt) and [@gvergnaud](https://twitter.com/GabrielVergnaud)
 
