@@ -2,6 +2,10 @@
 
 by @flegall and @gvergnaud
 
+### [Workshop Slides](https://bit.ly/3jUf7ub)
+
+### [Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/README.md)
+
 **Welcome to the Type Level TypeScript Workshop!**
 
 In this course and workshop we hope to take your TypeScript skills from intermediate to **advanced**, and even make a real **TypeScript Wizard** of you! We will start by demonstrating that the type system of TypeScript is much more than simple type annotations: it's actually a full fledged **programming language** in itself! Once you know how to program with types, everything becomes possible. You will no longer feel like your ability to write the abstractions you need is restrained by the type system.
@@ -19,10 +23,6 @@ It's worth noting that this course isn't a collection of TypeScript tricks! Inst
 Finally, we will also see that moving more of the complexity of your code to the type level is a **trade-off** that isn't always worth taking. We will talk about compile time performance, type errors, type-level debugging and other downsides of type level programming. We hope this will help you reflect and take the right decision when using these techniques.
 
 [Let's get started!](tree/main/00-introduction)
-
-### [Workshop Slides](https://bit.ly/3jUf7ub)
-
-### [Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/README.md)
 
 ## Note on naming conventions
 
