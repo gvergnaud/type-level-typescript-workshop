@@ -1,10 +1,10 @@
 # Type-Level TypeScript Workshop (🚧 WIP 🚧)
 
-by @flegall and @gvergnaud
+by [@flegall](https://twitter.com/flornt) and [@gvergnaud](https://twitter.com/GabrielVergnaud)
 
-### [Workshop Slides](https://bit.ly/3jUf7ub)
+### [👉 Slides](https://bit.ly/3jUf7ub)
 
-### [Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/README.md)
+### [👉 Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/README.md)
 
 **Welcome to the Type Level TypeScript Workshop!**
 
