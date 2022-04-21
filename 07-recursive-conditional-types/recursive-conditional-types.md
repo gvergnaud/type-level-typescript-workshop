@@ -28,7 +28,7 @@ type SomeLoop<list, /* ... 🎁 some params */> =
   list extends [infer first, ...infer rest] // 📥 split the list
     ? first extends /* ... ❓ some condition */
       ? /* ... ✅ base case, break the loop */
-      : FindById<rest, /* ... params */> // 🎢 recurse on `rest`
+      : SomeLoop<rest, /* ... params */> // 🎢 recurse on `rest`
     : someDefault; // ❌ the list is empty
 ```
 
