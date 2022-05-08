@@ -84,9 +84,9 @@ namespace four {
 
 namespace bonus {
   /**
-   * 4. Implement a generic extracting the first folder of a unix path.
+   * 5. Implement a generic extracting the first folder of a unix path.
    */
-  namespace four {
+  namespace five {
     type GetFirstFolder<path> = path extends `/${infer name}/${string}`
       ? name
       : path extends `/${infer name}`
