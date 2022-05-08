@@ -1,12 +1,12 @@
-# The data
+# The data of type-level programs
 
 Like with every programming language, in Type-Level TypeScript we will write programs that **transform some data** but unlike in other programming languages, the data our programs will transform are **types**!
 
 We will write code that take some types as input and output other types. To master this language we will need to start by understanding the different sorts of data we have at our disposal.
 
-## The three families of data
+## The three families of types
 
-There are 3 main "families" of data in Type-Level TypeScript (TLTS): primitive types, literal types, and data structures. Let's explore each of them.
+There are 3 main "families" of data in Type-Level TypeScript (TLTS): primitive types, literal types, and data structure types. Let's explore each of them.
 
 ### Primitive types
 
