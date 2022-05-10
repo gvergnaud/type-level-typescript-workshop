@@ -6,7 +6,7 @@
 // This an ESLint issue, not a typescript issue, you can trust other errors :)
 type TriggerESLintIssue = `${"a"}`;
 
-import { Equal, Expect, TODO } from "../helpers";
+import { Compute, Equal, Expect, TODO } from "../helpers";
 
 /**
  * 1. Implement a `ExtractUrlParamNames<url>` generic
@@ -36,10 +36,12 @@ namespace two {
   type ExtractUrlParams<url> = TODO;
 
   type res1 = ExtractUrlParams<"/user/:username">;
-  type test1 = Expect<Equal<res1, { username: string }>>;
+  type test1 = Expect<Equal<Compute<res1>, { username: string }>>;
 
   type res2 = ExtractUrlParams<"/user/:username/post/:postId">;
-  type test2 = Expect<Equal<res2, { username: string; postId: string }>>;
+  type test2 = Expect<
+    Equal<Compute<res2>, { username: string; postId: string }>
+  >;
 }
 
 namespace bonus {
@@ -54,10 +56,20 @@ namespace bonus {
     type ExtractUrlParams<url> = TODO;
 
     type res3 = ExtractUrlParams<"/dashboard(/:dashboardId)">;
-    type test3 = Expect<Equal<res3, { dashboardId?: string }>>;
+    type test3 = Expect<Equal<Compute<res3>, { dashboardId?: string }>>;
 
     type res4 = ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId)">;
-    type test4 = Expect<Equal<res4, { orgId: string; dashboardId?: string }>>;
+    type test4 = Expect<
+      Equal<Compute<res4>, { orgId: string; dashboardId?: string }>
+    >;
+    type res5 =
+      ExtractUrlParams<"org/:orgId/dashboard(/:dashboardId/widgets/:widgetId)">;
+    type test5 = Expect<
+      Equal<
+        Compute<res5>,
+        { orgId: string; dashboardId?: string; widgetId?: string }
+      >
+    >;
   }
 
   /**
