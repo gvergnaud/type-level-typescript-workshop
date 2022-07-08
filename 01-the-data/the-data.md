@@ -1,16 +1,16 @@
 # The data of type-level programs
 
-Like with every programming language, in Type Level Typescript we will write code that **transform some data**. The only thing that's different from most other languages is that the data our code will transform are **types**! We will write programs that take some types as input and output some other types.
+Like with every programming language, in Type Level TypeScript (TL-TS) we will write code that **transform some data**. The only thing that's different from other programming languages is that the data our code will transform are **types**! We will write programs which take some types as input and output some other types.
 
-To master this language we will need to start by understanding the different sorts of data we have at our disposal.
+There is no way to master a language without a good understanding the different sorts of data it provides, so let's see what we have at our disposal in TL-TS.
 
 ## The three families of types
 
-There are 3 main "families" of data in Type-Level TypeScript (TLTS): primitive types, literal types, and data structure types. Let's explore each of them.
+There are 3 main "families" of data in Type-Level TypeScript: primitive types, literal types, and data structure types. Let's explore each of them.
 
 ### Primitive types
 
-You are certainly already familiar with primitive types. We use them a lot to annotate our variables and functions in our day to day TypeScript code. Here is the list of primitive types:
+You are certainly already familiar with primitive types. We use them all the time to annotate our variables and functions in our day to day TypeScript code. Here is the list of primitive types:
 
 ```ts
 type Primitives =
@@ -23,7 +23,7 @@ type Primitives =
   | null;
 ```
 
-Every JavaScript value at the exception of objects and functions belong to one of these types. Most primitive types are the home of an infinite number of inhabitant values, like `number` or `string`, but two of them only contain a single lonely inhabitant: the `null` type and the `undefined` type. This specificity makes `null` and `undefined` also part of the second family of data we have at our disposal: **literal types**.
+Every JavaScript value at the exception of objects and functions belong to one of these types. Most primitive types are the home of an infinite number of inhabitant values, like `number` or `string`, but two of them only contain a single lonely inhabitant: the `null` type and the `undefined` type. This specificity makes `null` and `undefined` also part of the 2nd family of data we have at our disposal: **literal types**.
 
 ### Literal types
 
