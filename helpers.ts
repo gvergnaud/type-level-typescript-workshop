@@ -1,14 +1,8 @@
-type _Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
+export type Equal<X, Y> = (<T>() => T extends X ? 1 : 2) extends <T>() => T extends Y
   ? 1
   : 2
   ? true
   : false;
-
-export type Equal<X, Y> = _Equal<X, TODO> extends true
-  ? true
-  : _Equal<X, symbol> extends true
-  ? true
-  : _Equal<X, Y>;
 
 export type Expect<T extends true> = T;
 
