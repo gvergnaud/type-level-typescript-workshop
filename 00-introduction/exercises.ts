@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Equal, Expect, TODO } from "../helpers";
+import { Equal, Expect } from "../helpers";
 
 /**
  * 0. Warmup, try assigning this type to "NO", and then to "YES".

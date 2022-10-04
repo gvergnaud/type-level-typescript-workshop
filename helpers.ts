@@ -8,9 +8,6 @@ export type Expect<T extends true> = T;
 
 export type Tuple = [any, ...any[]];
 
-const TODO = Symbol("TODO");
-export type TODO = typeof TODO;
-
 /**
  * Compute is a helper converting intersections of objects into
  * flat, plain object types.

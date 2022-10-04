@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Equal, Expect, TODO } from "../helpers";
+import { Equal, Expect } from "../helpers";
 
 // CodeSandbox's eslint has issues with template literal types
 // https://github.com/codesandbox/codesandbox-client/issues/6630

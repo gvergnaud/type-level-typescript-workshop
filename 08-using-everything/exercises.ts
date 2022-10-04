@@ -6,7 +6,7 @@
 // This an ESLint issue, not a typescript issue, you can trust other errors :)
 type TriggerESLintIssue = `${"a"}`;
 
-import { Compute, Equal, Expect, TODO } from "../helpers";
+import { Compute, Equal, Expect } from "../helpers";
 
 /**
  * 1. Implement a `ExtractUrlParamNames<url>` generic
@@ -107,7 +107,6 @@ namespace bonus {
    * check out https://www.nytimes.com/games/wordle/index.html to try the actual game
    *
    * This is challenging, if you manage to solve it on your own congrats!
-   * You know as much as we do about type-level TypeScript now :).
    */
   namespace five {
     type todaysSecretWord = "READY";
