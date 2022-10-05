@@ -25,7 +25,7 @@ Over the years, the **type system** of TypeScript has grown from basic type anno
 
 Library code often needs to be much more abstract than the code we are used to writing; that's why it makes extensive usage of advanced TypeScript features such as **Generics**, **Conditional Types**, **Mapped Types** or even **Recursive Types**. I personally learned these concepts while working on [TS-Pattern](https://github.com/gvergnaud/ts-pattern), an open-source library that has the particularity of being extremely hard to type. In this course, I hope to share what I've learned by reading too much source code and tinkering for hundreds of hours with the type system.
 
-### [👉 Visite type-level-typescript.com to get better at this!](https://type-level-typescript.com)
+### [👉 Visit type-level-typescript.com to get better at this!](https://type-level-typescript.com)
 
 
 ## Note on naming conventions
