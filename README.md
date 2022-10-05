@@ -16,7 +16,7 @@ Type-Level TypeScript is a course to take your TypeScript skills from intermedia
 
 ### [👉 Visite type-level-typescript.com to start learning!](https://type-level-typescript.com)
 
-This repository contains many of these challenges. their difficulty increases over time, from begineer to advanced, and even to *super advanced*! **Give them a try!**
+This repository contains many of these challenges. their difficulty increases over time, from beginner to advanced, and even to *super advanced*! **Give them a try!**
 
 ### [👉 Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/00-introduction/exercises.ts)
 
