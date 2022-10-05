@@ -1,6 +1,8 @@
 
 
-![Type-Level TypeScript Workshop logo](https://user-images.githubusercontent.com/9265418/194098070-59c7d86f-7539-480d-9074-1bd9b6bdf210.png)
+![Type-Level TypeScript Workshop logo](https://user-images.githubusercontent.com/9265418/194100467-b457d9da-0771-40b2-a822-786b1c150b5a.png)
+
+
 
 by [@flegall](https://twitter.com/flornt) and [@gvergnaud](https://twitter.com/GabrielVergnaud)
 
