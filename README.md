@@ -1,8 +1,10 @@
-# ✨ Type-Level TypeScript Workshop ✨
+![image](https://user-images.githubusercontent.com/9265418/194098070-59c7d86f-7539-480d-9074-1bd9b6bdf210.png)
 
 by [@flegall](https://twitter.com/flornt) and [@gvergnaud](https://twitter.com/GabrielVergnaud)
 
-## **Welcome!**
+
+
+## Welcome to the ✨ Type-Level TypeScript Workshop ✨
 
 Type-Level TypeScript is a course to take your TypeScript skills from intermediate to **advanced**. It will give you a solid understanding of the type system's fundamentals and guide you through its most advanced features. You will find everything you need to become a real **TypeScript Pro** — not only **in-depth content**, but also **fun challenges** to practice your new skills.
 
