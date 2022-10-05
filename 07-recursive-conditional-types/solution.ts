@@ -6,7 +6,7 @@
 // This an ESLint issue, not a typescript issue, you can trust other errors :)
 type TriggerESLintIssue = `${"a"}`;
 
-import { Equal, Expect, Tuple, TODO } from "../helpers";
+import { Equal, Expect, Tuple } from "../helpers";
 
 /**
  * Implement a Reverse type that takes a tuple and reverses it.

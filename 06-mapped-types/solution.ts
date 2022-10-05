@@ -6,7 +6,7 @@
 // This an ESLint issue, not a typescript issue, you can trust other errors :)
 type TriggerESLintIssue = `${"a"}`;
 
-import { Equal, Expect, TODO } from "../helpers";
+import { Equal, Expect } from "../helpers";
 
 // 1. Implement a generic which makes all keys of an object type optional.
 namespace one {

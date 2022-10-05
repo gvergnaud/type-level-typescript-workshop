@@ -1,6 +1,6 @@
 /* eslint-disable */
 
-import { Equal, Expect, TODO } from "../helpers";
+import { Equal, Expect } from "../helpers";
 
 // 1. implement a generic to get the union of all keys  of an object type.
 namespace one {
