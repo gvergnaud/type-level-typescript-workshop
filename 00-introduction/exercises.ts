@@ -3,11 +3,10 @@
 import { Equal, Expect } from "../helpers";
 
 /**
- * 0. Warmup, try assigning this type to "NO", and then to "YES".
+ * 0. Warmup, try assigning "World" to `type Hello`.
  */
 namespace zero {
-  type Do_You_Understand_How_To_Take_These_Challenges = TODO;
+  type Hello = TODO;
 
-  type res1 = Do_You_Understand_How_To_Take_These_Challenges;
-  type test1 = Expect<Equal<res1, "YES">>;
+  type test1 = Expect<Equal<Hello, "YES">>;
 }
