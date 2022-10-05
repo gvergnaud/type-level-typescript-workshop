@@ -1,11 +1,5 @@
 /* eslint-disable */
 
-// CodeSandbox's eslint has issues with template literal types
-// https://github.com/codesandbox/codesandbox-client/issues/6630
-// Better have this error once here rather than where you have to use that syntax.
-// This an ESLint issue, not a typescript issue, you can trust other errors :)
-type TriggerESLintIssue = `${"a"}`;
-
 import { Equal, Expect } from "../helpers";
 
 // 1. Implement a generic which makes all keys of an object type optional.
