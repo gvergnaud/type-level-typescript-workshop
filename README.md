@@ -18,6 +18,7 @@ This repository contains many of these challenges. their difficulty gradually in
 
 ### [👉 Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/00-introduction/exercises.ts)
 
+### [👉 Slides](https://bit.ly/3jUf7ub)
 
 ## Introduction
 
