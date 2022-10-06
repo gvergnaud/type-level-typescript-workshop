@@ -18,8 +18,6 @@ This repository contains many of these challenges. their difficulty gradually in
 
 ### [👉 Take the workshop on Codesandbox](https://codesandbox.io/s/github/gvergnaud/type-level-typescript-workshop?file=/00-introduction/exercises.ts)
 
-### [👉 Slides](https://bit.ly/3jUf7ub)
-
 ## Introduction
 
 Over the years, the **type system** of TypeScript has grown from basic type annotations to a **large and complex** programming language. If you have ever looked into the code of an open source library you may have found types that looked intimidating and foreign, like some esoteric language coming from another planet.
