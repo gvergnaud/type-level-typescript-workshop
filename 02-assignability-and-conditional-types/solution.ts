@@ -128,12 +128,14 @@ namespace bonus {
     type test4 = Get<{ name: string }, "age">;
   }
 
-  namespace seven {
-    type XOR<bool1, bool2> = [bool1, bool2] extends [true, true]
-      ? false
-      : [bool1, bool2] extends [false, false]
-      ? false
-      : true;
+namespace seven {
+    type XOR<bool1, bool2> = bool1 extends bool2 ? false : true;
+    // alternative
+    // type XOR2<bool1, bool2> = [bool1, bool2] extends
+    //   | [true, true]
+    //   | [false, false]
+    //   ? false
+    //   : true;
 
     type res1 = XOR<true, true>;
     type t1 = Expect<Equal<res1, false>>;
